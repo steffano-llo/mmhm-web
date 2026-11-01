@@ -75,6 +75,9 @@ const obras = Object.fromEntries((await getObras()).map((o) => [o.id, o]));
     }
     idx.addEventListener("scroll",bordes,{passive:true});
     addEventListener("resize",bordes);
+    // Recalcula si cambia la altura del índice o de sus ítems (p. ej. al cargar las fuentes)
+    if("ResizeObserver" in window){ const ro=new ResizeObserver(bordes); ro.observe(idx); [...idx.children].forEach(c=>ro.observe(c)); }
+    else addEventListener("load",bordes);
     bordes();
     if(!("IntersectionObserver" in window)) return;
     const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){
