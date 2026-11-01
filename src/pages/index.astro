@@ -112,13 +112,22 @@ const og = caso.data.portada ? (await getImage({ src: caso.data.portada, width: 
         </div>
         <a class="btn btn-line" href="/servicios/">Ver todos los servicios</a>
       </div>
-      <div class="svc-cards">
-        {SERVICIOS.map((s, i) => (
-          <a class="svc-card" href={`/servicios/#servicio-${s.id}`}>
-            <span class="bg" aria-hidden="true"><img src={s.img} alt="" loading="lazy"></span>
-            <span class="n">{nn(i)}</span><Fragment set:html={sico(s.ic)} /><h3>{s.t}</h3><p>{s.c}</p>
-          </a>
-        ))}
+      <div class="svc-car" role="region" aria-roledescription="carrusel" aria-label="Servicios">
+        <div class="svc-cards" id="svcTrack">
+          {SERVICIOS.map((s, i) => (
+            <a class="svc-card" href={`/servicios/#servicio-${s.id}`}>
+              <span class="bg" aria-hidden="true"><img src={s.img} alt="" loading="lazy"></span>
+              <span class="n">{nn(i)}</span><Fragment set:html={sico(s.ic)} /><h3>{s.t}</h3><p>{s.c}</p>
+            </a>
+          ))}
+        </div>
+        <div class="svc-ctrl">
+          <p class="svc-count" aria-live="polite"><span class="sr">Servicio </span><b id="svcNow">01</b><span aria-hidden="true"> / </span><span class="sr"> de </span>{nn(SERVICIOS.length - 1)}</p>
+          <div class="svc-arrows">
+            <button class="svc-nav" id="svcPrev" type="button" aria-controls="svcTrack" aria-label="Servicios anteriores" aria-disabled="true"><Icon d={IC.l} w={2.2} /></button>
+            <button class="svc-nav" id="svcNext" type="button" aria-controls="svcTrack" aria-label="Servicios siguientes"><Icon d={IC.r} w={2.2} /></button>
+          </div>
+        </div>
       </div>
     </div>
   </section>

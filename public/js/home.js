@@ -211,3 +211,41 @@ const ETAPAS = [
     note.textContent="Se abrió WhatsApp con su mensaje. Solo falta enviarlo.";
   });
 })();
+
+/* ===== Carrusel de servicios (scroll-snap nativo + flechas, contador y teclado) ===== */
+(function(){
+  const t=document.getElementById("svcTrack"); if(!t) return;
+  const cards=[...t.children], prev=document.getElementById("svcPrev"), next=document.getElementById("svcNext"), now=document.getElementById("svcNow");
+  const quieto=matchMedia("(prefers-reduced-motion: reduce)");
+  const paso=()=>cards.length>1 ? cards[1].offsetLeft-cards[0].offsetLeft : t.clientWidth;
+  const visibles=()=>Math.max(1,Math.floor((t.clientWidth+1)/paso()));
+  const idx=()=>Math.min(cards.length-1,Math.max(0,Math.round(t.scrollLeft/paso())));
+  const ir=i=>t.scrollTo({left:cards[Math.min(cards.length-1,Math.max(0,i))].offsetLeft-cards[0].offsetLeft,behavior:quieto.matches?"auto":"smooth"});
+  let last=0, raf=0;
+  const upd=()=>{ raf=0;
+    // Extremos: la primera o la última tarjeta se ven completas
+    const tr=t.getBoundingClientRect();
+    const ini=cards[0].getBoundingClientRect().left>=tr.left-1;
+    const fin=cards[cards.length-1].getBoundingClientRect().right<=tr.right+1;
+    prev.setAttribute("aria-disabled",ini);
+    next.setAttribute("aria-disabled",fin);
+    // En el extremo final se muestra el último servicio, no el primero visible
+    const i=fin ? cards.length-1 : idx(); if(i!==last){ last=i; now.textContent=String(i+1).padStart(2,"0"); }
+  };
+  const pedir=()=>{ if(!raf) raf=requestAnimationFrame(upd); };
+  // aria-disabled en vez de disabled: el botón no pierde el foco en los extremos
+  prev.addEventListener("click",()=>{ if(prev.getAttribute("aria-disabled")!=="true") ir(idx()-visibles()); });
+  next.addEventListener("click",()=>{ if(next.getAttribute("aria-disabled")!=="true") ir(idx()+visibles()); });
+  // Flechas, Inicio y Fin mueven el foco entre tarjetas
+  t.addEventListener("keydown",e=>{
+    const k=cards.indexOf(document.activeElement); if(k<0) return;
+    const j={ArrowLeft:k-1,ArrowRight:k+1,Home:0,End:cards.length-1}[e.key];
+    if(j===undefined||j<0||j>=cards.length) return;
+    e.preventDefault();
+    cards[j].focus({preventScroll:true});
+    cards[j].scrollIntoView({block:"nearest",inline:"nearest",behavior:quieto.matches?"auto":"smooth"});
+  });
+  t.addEventListener("scroll",pedir,{passive:true});
+  addEventListener("resize",pedir);
+  upd();
+})();
