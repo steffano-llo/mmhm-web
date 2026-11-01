@@ -45,4 +45,14 @@ const obras = defineCollection({
   }),
 });
 
-export const collections = { obras };
+/** Páginas legales (Privacidad, Términos): texto en Markdown editable sin tocar código. */
+const legal = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/legal' }),
+  schema: z.object({
+    titulo: z.string(),
+    /** Fecha de la última actualización, formato AAAA-MM-DD. */
+    actualizado: z.coerce.date(),
+  }),
+});
+
+export const collections = { obras, legal };
