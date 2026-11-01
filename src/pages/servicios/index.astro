@@ -55,11 +55,35 @@ const obras = Object.fromEntries((await getObras()).map((o) => [o.id, o]));
   </div>
   <script is:inline slot="scripts">
   (function(){
+    const idx=document.getElementById("svcIndex");
+    if(!idx) return;
+    const links=[...idx.querySelectorAll("a")];
+    const movil=matchMedia("(max-width:1000px)");
+    const quieto=matchMedia("(prefers-reduced-motion:reduce)");
+    // Degradado arriba/abajo solo si hay más contenido en esa dirección
+    function bordes(){
+      idx.classList.toggle("ft",idx.scrollTop>2);
+      idx.classList.toggle("fb",idx.scrollTop+idx.clientHeight<idx.scrollHeight-2);
+    }
+    // Desplaza solo el índice (no la página) para que el ítem activo quede visible
+    function mostrar(a){
+      const r=a.getBoundingClientRect(), n=idx.getBoundingClientRect(), m=36;
+      let d=0;
+      if(r.top<n.top+m) d=r.top-n.top-m;
+      else if(r.bottom>n.bottom-m) d=r.bottom-n.bottom+m;
+      if(d) idx.scrollTo({top:idx.scrollTop+d,behavior:quieto.matches?"auto":"smooth"});
+    }
+    idx.addEventListener("scroll",bordes,{passive:true});
+    addEventListener("resize",bordes);
+    bordes();
     if(!("IntersectionObserver" in window)) return;
-    const links=[...document.querySelectorAll("#svcIndex a")];
     const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){
       const id=e.target.id.replace("servicio-","");
-      links.forEach(a=>{ const on=a.dataset.s===id; a.classList.toggle("on",on); if(on && matchMedia("(max-width:1000px)").matches) a.scrollIntoView({block:"nearest",inline:"center"}); });
+      links.forEach(a=>{ const on=a.dataset.s===id; a.classList.toggle("on",on);
+        if(!on) return;
+        if(movil.matches) a.scrollIntoView({block:"nearest",inline:"center"});
+        else mostrar(a);
+      });
     }}),{rootMargin:"-35% 0px -60% 0px"});
     document.querySelectorAll(".svc-item").forEach(el=>io.observe(el));
   })();

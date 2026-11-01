@@ -375,6 +375,16 @@ footer{background:#081427;color:#AEBBD0;padding:70px 0 0;font-size:.94rem}
 @media (max-width:1000px){.svc-index .lg{display:none}.svc-index .sm{display:inline}}
 .svc-index a.on{color:var(--ink);border-color:var(--blue)}
 .svc-index a.on span{color:var(--blue)}
+/* Índice con scroll propio en escritorio; el móvil (≤1000px) no cambia */
+@media (min-width:1001px){
+  .svc-index{--ft:0px;--fb:0px;max-height:calc(100vh - 110px - 24px);overflow-y:auto;overscroll-behavior:contain;padding-right:6px;scrollbar-width:thin;scrollbar-color:var(--line) transparent;
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 var(--ft),#000 calc(100% - var(--fb)),transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 var(--ft),#000 calc(100% - var(--fb)),transparent 100%)}
+  .svc-index.ft{--ft:28px}.svc-index.fb{--fb:28px}
+  .svc-index::-webkit-scrollbar{width:6px}
+  .svc-index::-webkit-scrollbar-thumb{background:var(--line);border-radius:6px}
+  .svc-index::-webkit-scrollbar-thumb:hover{background:var(--steel)}
+  .svc-index a:focus-visible{outline-offset:-3px}
+}
 .svc-list{display:grid;gap:90px}
 .svc-item{scroll-margin-top:110px}
 .svc-media{position:relative;aspect-ratio:16/8;border-radius:10px;overflow:hidden;background:var(--navy-2)}
