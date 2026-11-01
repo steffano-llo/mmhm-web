@@ -19,7 +19,7 @@ import { SERVICIOS, WA, TEL, TEL_TXT, MAIL, BROCHURE } from '../lib/site';
       <div><h4>Servicios</h4><ul>{SERVICIOS.map((s) => <li><a href={`/servicios/#servicio-${s.id}`}>{s.t}</a></li>)}</ul></div>
       <div><h4>Contacto</h4><ul><li><a href={`tel:${TEL}`}>{TEL_TXT}</a></li><li><a href={`mailto:${MAIL}`}>{MAIL}</a></li><li>Av. República de Colombia 625, Of. 501, San Isidro</li><li>Lunes a viernes, 8 a.m. a 6 p.m.</li></ul></div>
     </div>
-    <div class="legal"><span>© {new Date().getFullYear()} MM High Metrik Engineers S.A.C. Todos los derechos reservados.</span><span><a href="https://www.mmhighmetrik.com/privacidad">Privacidad</a> &nbsp;·&nbsp; <a href="https://www.mmhighmetrik.com/terminos">Términos</a></span></div>
+    <div class="legal"><span>© {new Date().getFullYear()} MM High Metrik Engineers S.A.C. Todos los derechos reservados.</span><span><a href="/privacidad/">Privacidad</a> &nbsp;·&nbsp; <a href="/terminos/">Términos</a></span></div>
   </div>
   <div class="giant" aria-hidden="true">HIGH METRIK</div>
 </footer>
