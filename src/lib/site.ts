@@ -6,6 +6,21 @@ export const BROCHURE = 'https://www.mmhighmetrik.com/brochure.pdf';
 
 export const waUrl = (txt: string) => `https://wa.me/${WA}?text=${encodeURIComponent(txt)}`;
 
+/**
+ * Clientes de la franja "Han confiado en nosotros".
+ * n: nombre (también es el alt). logo: ruta dentro de /public (opcional). url: sitio del cliente (opcional).
+ * Si falta el logo o el archivo no existe, se muestra el nombre en texto.
+ */
+export type Cliente = { n: string; logo?: string; url?: string };
+export const CLIENTES: Cliente[] = [
+  { n: 'Municipalidad de Lima', logo: '/assets/clientes/logo-municipalidad-de-lima.png' },
+  // Logo pendiente: el SVG recibido tiene fondo negro opaco.
+  { n: 'PROLIMA' },
+  { n: 'Osinergmin', logo: '/assets/clientes/logo-osinergmin.svg' },
+  // Logo pendiente: el SVG recibido tiene fondo negro opaco.
+  { n: 'Municipalidad de Santiago de Surco' },
+];
+
 export type TipoKey = 'geo' | 'rio' | 'pub' | 'edif';
 export const TIPOS: Record<TipoKey, { n: string; i: string }> = {
   rio: { n: 'Ríos y defensas', i: '<path d="M4 14c4-4 8 4 12 0s8 4 12 0 6 2 8 0M4 24c4-4 8 4 12 0s8 4 12 0 6 2 8 0"/>' },

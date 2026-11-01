@@ -1,0 +1,36 @@
+---
+// Franja de clientes con logo y respaldo en texto si falta el archivo.
+import fs from 'node:fs';
+import path from 'node:path';
+import sharp from 'sharp';
+import { CLIENTES, type Cliente } from '../lib/site';
+
+interface Props { titulo?: string; clientes?: Cliente[] }
+const { titulo = 'Han confiado en nosotros', clientes = CLIENTES } = Astro.props;
+
+const ALTO = 48;
+const items = await Promise.all(clientes.map(async (c) => {
+  const archivo = c.logo ? path.join(process.cwd(), 'public', c.logo) : null;
+  if (!archivo || !fs.existsSync(archivo)) return { ...c, img: null };
+  // Medidas reales del archivo para reservar el espacio (evita saltos de diseño).
+  const { width = ALTO, height = ALTO } = await sharp(archivo).metadata();
+  return { ...c, img: { src: c.logo!, w: Math.round((width / height) * ALTO), h: ALTO } };
+}));
+---
+<div class="clients">
+  <div class="wrap">
+    <p>{titulo}</p>
+    <ul>
+      {items.map((c) => {
+        const contenido = c.img
+          ? <img src={c.img.src} alt={c.n} width={c.img.w} height={c.img.h} loading="lazy" decoding="async" />
+          : <span>{c.n}</span>;
+        return (
+          <li class={c.img ? 'has-logo' : undefined}>
+            {c.url ? <a href={c.url} target="_blank" rel="noopener">{contenido}</a> : contenido}
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</div>

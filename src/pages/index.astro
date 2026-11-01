@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
+import Clientes from '../components/Clientes.astro';
 import { Picture, getImage } from 'astro:assets';
 import { IC } from '../lib/icons';
 import { SERVICIOS, TIPOS, sico, nn, BROCHURE, TEL, TEL_TXT, MAIL, WA } from '../lib/site';
@@ -63,12 +64,7 @@ const og = caso.data.portada ? (await getImage({ src: caso.data.portada, width: 
     </div>
   </section>
 
-  <div class="clients">
-    <div class="wrap">
-      <p>Han confiado en nosotros</p>
-      <ul><li>Municipalidad de Lima</li><li>PROLIMA</li><li>Osinergmin</li><li>Municipalidad de Santiago de Surco</li></ul>
-    </div>
-  </div>
+  <Clientes />
 
   <section class="case" aria-labelledby="case-t" style="padding:0">
     <div class="case-img">{caso.data.portada && <Picture src={caso.data.portada} formats={['webp']} fallbackFormat="webp" widths={[800, 1200, 1600]} sizes="(max-width:1000px) 100vw, 55vw" alt="Personal instalando geomallas en el acantilado de la Costa Verde, con el mar al fondo" loading="lazy" />}</div>
