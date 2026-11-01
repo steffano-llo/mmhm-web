@@ -13,12 +13,10 @@ export const waUrl = (txt: string) => `https://wa.me/${WA}?text=${encodeURICompo
  */
 export type Cliente = { n: string; logo?: string; url?: string };
 export const CLIENTES: Cliente[] = [
-  { n: 'Municipalidad de Lima', logo: '/assets/clientes/logo-municipalidad-de-lima.png' },
-  // Logo pendiente: el SVG recibido tiene fondo negro opaco.
-  { n: 'PROLIMA' },
+  { n: 'Municipalidad de Lima', logo: '/assets/clientes/logo-municipalidad-de-lima.svg' },
+  { n: 'PROLIMA', logo: '/assets/clientes/logo-prolima.svg' },
   { n: 'Osinergmin', logo: '/assets/clientes/logo-osinergmin.svg' },
-  // Logo pendiente: el SVG recibido tiene fondo negro opaco.
-  { n: 'Municipalidad de Santiago de Surco' },
+  { n: 'Municipalidad de Santiago de Surco', logo: '/assets/clientes/logo-municipalidad-de-santiago-de-surco.svg' },
 ];
 
 export type TipoKey = 'geo' | 'rio' | 'pub' | 'edif';
