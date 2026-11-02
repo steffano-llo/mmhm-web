@@ -4,5 +4,7 @@ dist/
 .vercel/
 .env
 .env.*
+.dev.vars
+.wrangler/
 .DS_Store
 Thumbs.db
