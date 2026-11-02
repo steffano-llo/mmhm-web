@@ -198,20 +198,6 @@ const ETAPAS = [
 })();
 
 
-/* ===== Formulario -> WhatsApp ===== */
-(function(){
-  const sel=document.getElementById("fServicio"), q=new URLSearchParams(location.search).get("servicio");
-  if(q && [...sel.options].some(o=>o.value===q)) sel.value=q;
-  document.getElementById("quoteForm").addEventListener("submit", e=>{
-    e.preventDefault();
-    const f=e.target, note=document.getElementById("formNote");
-    if(!f.nombre.value.trim() || !f.mensaje.value.trim()){ note.textContent="Complete su nombre y la descripción del proyecto."; return; }
-    const txt=`Hola, soy ${f.nombre.value.trim()}${f.empresa.value.trim()?` de ${f.empresa.value.trim()}`:""}. Quisiera cotizar: ${f.servicio.value}.\n\n${f.mensaje.value.trim()}`;
-    window.open(`https://wa.me/${WA}?text=${encodeURIComponent(txt)}`,"_blank","noopener");
-    note.textContent="Se abrió WhatsApp con su mensaje. Solo falta enviarlo.";
-  });
-})();
-
 /* ===== Carrusel de servicios (scroll-snap nativo + flechas, contador y teclado) ===== */
 (function(){
   const t=document.getElementById("svcTrack"); if(!t) return;

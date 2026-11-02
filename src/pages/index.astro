@@ -4,7 +4,7 @@ import Icon from '../components/Icon.astro';
 import Clientes from '../components/Clientes.astro';
 import { Picture, getImage } from 'astro:assets';
 import { IC } from '../lib/icons';
-import { SERVICIOS, TIPOS, sico, nn, BROCHURE, TEL, TEL_TXT, MAIL, WA } from '../lib/site';
+import { SERVICIOS, TIPOS, sico, nn, BROCHURE } from '../lib/site';
 import { getObras, urlObra, waObra } from '../lib/obras';
 
 const obras = await getObras();
@@ -22,6 +22,8 @@ const obrasMin = Object.fromEntries(await Promise.all(ETAPA_OBRAS.map(async (id)
 const og = caso.data.portada ? (await getImage({ src: caso.data.portada, width: 1200, height: 630, fit: 'cover', format: 'jpg' })).src : undefined;
 ---
 <Base title="MM High Metrik Engineers | Construcción, remodelación y mantenimiento" nav="inicio" image={og}>
+  {/* Enlaces antiguos: /#contacto y /?servicio=...#contacto */}
+  <script is:inline slot="head">if(location.hash==="#contacto")location.replace("/contacto/"+location.search);</script>
   <section class="hero" id="inicio" style="padding:0">
     <img class="hero-img" src="/assets/hero-excavadora.jpg" alt="Excavadora trabajando sobre enrocado al atardecer" fetchpriority="high">
     <video class="hero-video" id="heroVideo" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
@@ -147,36 +149,12 @@ const og = caso.data.portada ? (await getImage({ src: caso.data.portada, width: 
     </div>
   </section>
 
-  <section class="contact" id="contacto">
+  <div class="band">
     <div class="wrap">
-      <div class="contact-grid">
-        <div class="contact-info">
-          <h2>¿Tiene un proyecto en mente?</h2>
-          <p style="margin-top:14px;color:#B9C4D6">Cuéntenos qué necesita y le respondemos con una propuesta.</p>
-          <ul>
-            <li><Icon d={IC.pin} /><span>Av. República de Colombia 625, Of. 501<small>San Isidro, Lima</small></span></li>
-            <li><Icon d={IC.tel} /><span><a href={`tel:${TEL}`}>{TEL_TXT}</a><small>Lunes a viernes, 8 a.m. a 6 p.m.</small></span></li>
-            <li><Icon d={IC.mail} /><span><a href={`mailto:${MAIL}`}>{MAIL}</a></span></li>
-          </ul>
-          <div class="map"><iframe title="Ubicación de la oficina en San Isidro" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Av.%20Rep%C3%BAblica%20de%20Colombia%20625%2C%20San%20Isidro%2C%20Lima&z=16&output=embed"></iframe></div>
-        </div>
-        <form id="quoteForm" novalidate>
-          <h3>Solicite su cotización</h3>
-          <p>Al enviar se abrirá WhatsApp con su mensaje listo.</p>
-          <div class="row2">
-            <label>Nombre<input name="nombre" required autocomplete="name"></label>
-            <label>Empresa<input name="empresa" autocomplete="organization"></label>
-          </div>
-          <label>Servicio
-            <select name="servicio" id="fServicio">{SERVICIOS.map((s) => <option>{s.t}</option>)}<option>Otro</option></select>
-          </label>
-          <label>Descripción del proyecto<textarea name="mensaje" required placeholder="Ubicación, alcance aproximado y plazo"></textarea></label>
-          <button class="btn btn-primary" type="submit" style="justify-self:start">Enviar por WhatsApp</button>
-          <p class="form-note" id="formNote" role="status"></p>
-        </form>
-      </div>
+      <h2>¿Tiene un proyecto en mente?</h2>
+      <a class="btn" href="/contacto/">Cotizar</a>
     </div>
-  </section>
+  </div>
 
   <div class="drawer-bd" id="stepBd" hidden></div>
   <div class="drawer" id="stepDlg" role="dialog" aria-modal="true" aria-labelledby="stepTitle" hidden>

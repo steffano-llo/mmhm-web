@@ -3,6 +3,12 @@ export const WA = '51955137140';
 export const TEL = '+51955137140';
 export const TEL_TXT = '(+51) 955 137 140';
 export const MAIL = 'mmhighmetrik@gmail.com';
+export const DIRECCION = 'Av. República de Colombia 625, Of. 501';
+export const DISTRITO = 'San Isidro';
+export const DIR_MAPA = 'Av. República de Colombia 625, San Isidro, Lima';
+export const HORARIO = 'Lunes a viernes, 8 a.m. a 6 p.m.';
+export const FACEBOOK = 'https://www.facebook.com/share/1EMLLRL683/?mibextid=wwXIfr';
+export const INSTAGRAM = 'https://www.instagram.com/mmhighmetrik.pe';
 export const BROCHURE = 'https://www.mmhighmetrik.com/brochure.pdf';
 
 export const waUrl = (txt: string) => `https://wa.me/${WA}?text=${encodeURIComponent(txt)}`;

@@ -42,7 +42,7 @@ const obras = Object.fromEntries((await getObras()).map((o) => [o.id, o]));
                       {s.obras.filter((id) => obras[id]).map((id) => <a href={urlObra(id)}><Icon d={IC.pin} w={2.2} />{obras[id].data.titulo}</a>)}
                     </div></div>
                   </div>
-                  <a class="btn btn-primary" href={`/?servicio=${encodeURIComponent(s.t)}#contacto`}>Solicitar información</a>
+                  <a class="btn btn-primary" href={`/contacto/?servicio=${encodeURIComponent(s.t)}`}>Solicitar información</a>
                 </div>
               </article>
             ))}
@@ -54,7 +54,7 @@ const obras = Object.fromEntries((await getObras()).map((o) => [o.id, o]));
   <div class="band">
     <div class="wrap">
       <h2>¿No encuentra el servicio que necesita?</h2>
-      <a class="btn" href="/#contacto">Cuéntenos su proyecto</a>
+      <a class="btn" href="/contacto/">Cuéntenos su proyecto</a>
     </div>
   </div>
   <script is:inline slot="scripts">
