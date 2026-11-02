@@ -267,6 +267,18 @@ footer{background:#081427;color:#AEBBD0;padding:48px 0 0;font-size:.94rem}
 .band .btn{background:#fff;color:var(--blue)}
 .band .btn:hover{background:#E6EDFF}
 
+/* Página Nosotros */
+.nos-sec{padding:90px 0}
+.nos-vm{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.nos-vm article{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:8px;padding:32px}
+.nos-vm h2{font-size:clamp(1.4rem,2.4vw,1.8rem);line-height:1.15}
+.nos-vm p{margin-top:14px;color:var(--muted)}
+.nos-tramites{margin-top:26px;border-left:3px solid var(--blue-2);padding-left:14px}
+.dark .nos-tramites b{color:#fff}
+.nos-valores{grid-template-columns:repeat(4,1fr);margin-top:36px}
+@media (max-width:1000px){.nos-vm{grid-template-columns:1fr}.nos-valores{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.nos-sec{padding:64px 0}.nos-vm article{padding:24px}.nos-valores{grid-template-columns:1fr}}
+
 /* Mapa de obras */
 .map-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:26px}
 .map-jump{display:flex;gap:8px}

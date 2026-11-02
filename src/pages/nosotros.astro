@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+import Clientes from '../components/Clientes.astro';
+
+const VALORES = [
+  { t: 'Calidad', d: 'Cada proyecto se ejecuta bajo los más altos estándares de calidad y normas vigentes del sector construcción.' },
+  { t: 'Puntualidad', d: 'Respetamos los plazos acordados con cada cliente. La puntualidad en la entrega es un compromiso irrenunciable.' },
+  { t: 'Innovación', d: 'Nos mantenemos a la vanguardia de la tecnología y herramientas del sector para brindar soluciones modernas.' },
+  { t: 'Compromiso', d: '100% comprometidos con el cliente, trabajando en coordinación constante durante todo el ciclo del proyecto.' },
+];
+---
+<Base title="Nosotros | MM High Metrik Engineers" nav="nosotros" description="Conozca a MM High Metrik Engineers S.A.C.: empresa especializada en servicios integrales de construcción, remodelación y mantenimiento.">
+  <div class="page-hero">
+    <img src="/assets/proyectos/rio-lurin.jpg" alt="">
+    <div class="wrap">
+      <p class="crumbs"><a href="/">Inicio</a> / Nosotros</p>
+      <h1>Nosotros</h1>
+      <div class="cota" style="color:var(--blue-2)"><i></i><span>Ingeniería, gestión y obra</span><i></i></div>
+      <p>Servicios integrales de construcción, remodelación y mantenimiento.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap split">
+      <div>
+        <span class="kicker">Quiénes somos</span>
+        <h2>MM High Metrik Engineers S.A.C.</h2>
+        <p class="lead" style="margin-top:22px">Empresa especializada en servicios integrales de construcción, remodelación y mantenimiento. Nuestros servicios abarcan desde la planificación, diseño, ejecución y entrega final del proyecto.</p>
+        <p class="lead" style="margin-top:14px">En MM HIGH METRIK ENGINEERS S.A.C. contamos con los recursos y la experiencia necesarios para cumplir con sus requerimientos de manera oportuna y eficaz.</p>
+      </div>
+      <div class="about-photos">
+        <img src="/assets/proyectos/rio-lurin.jpg" alt="Flota de excavadoras en la obra de descolmatación del Río Lurín" style="object-position:62% center" loading="lazy">
+        <figure class="duo"><img src="/assets/oficina.jpg" alt="Recepción de la oficina de MM High Metrik en San Isidro" loading="lazy"></figure>
+        <figure class="duo"><img src="/assets/proyectos/rio-rimac-ramiro-priale.jpg" alt="Excavadoras trabajando de noche en el cauce del Río Rímac" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="nos-sec" style="padding-top:0">
+    <div class="wrap nos-vm">
+      <article>
+        <span class="kicker">Nuestra Visión</span>
+        <h2>Ser reconocidos como referentes de excelencia</h2>
+        <p>Ser reconocidos en el mercado de la construcción como una empresa con pasión por los altos estándares, superando las expectativas de nuestros clientes y con esto también llevar a la población a una mejor calidad de vida.</p>
+      </article>
+      <article>
+        <span class="kicker">Nuestra Misión</span>
+        <h2>Proyectos civiles modernos con calidad garantizada</h2>
+        <p>Realizar proyectos de construcción civil modernos, siendo el apoyo principal de nuestros clientes garantizando seguridad y respetando los plazos indicados en la ejecución. Nuestra prioridad es proporcionar la confianza que nuestra experiencia en el mercado nos permite, brindando la calidad de siempre y optimizando los tiempos.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="dark nos-sec">
+    <div class="wrap">
+      <span class="kicker">Filosofía de Trabajo</span>
+      <h2>Gestión Integral del Proyecto</h2>
+      <p class="lead" style="margin-top:22px">Ejecutamos los proyectos en su totalidad, desde la ingeniería, gestión integral del proyecto, construcción de la obra, logística y supervisión de los trabajos, con el fin de que se realicen de acuerdo a la norma vigente, cuidando la calidad en los procesos constructivos en coordinación constante con el cliente.</p>
+      <p class="lead nos-tramites"><b>Trámites incluidos:</b> autorizaciones GTU, SERPAR y MINAM.</p>
+    </div>
+  </section>
+
+  <section class="nos-sec">
+    <div class="wrap">
+      <span class="kicker">Nuestros Valores</span>
+      <h2>Lo que nos define</h2>
+      <div class="about-list nos-valores">
+        {VALORES.map((v) => <div><b>{v.t}</b><span>{v.d}</span></div>)}
+      </div>
+    </div>
+  </section>
+
+  <Clientes />
+
+  <div class="band">
+    <div class="wrap">
+      <h2>¿Tiene un proyecto en mente?</h2>
+      <a class="btn" href="/#contacto">Solicitar cotización</a>
+    </div>
+  </div>
+</Base>

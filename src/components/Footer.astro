@@ -15,7 +15,7 @@ import { SERVICIOS, FAMILIAS, WA, TEL, TEL_TXT, MAIL, BROCHURE } from '../lib/si
           <a href={`https://wa.me/${WA}`} target="_blank" rel="noopener" aria-label="WhatsApp"><Icon d={IC.wa} fill /></a>
         </div>
       </div>
-      <div><h4>Empresa</h4><ul><li><a href="/#nosotros">Nosotros</a></li><li><a href="/servicios/">Servicios</a></li><li><a href="/proyectos/">Proyectos</a></li><li><a href="/#contacto">Contacto</a></li><li><a href={BROCHURE} target="_blank" rel="noopener">Brochure</a></li></ul></div>
+      <div><h4>Empresa</h4><ul><li><a href="/nosotros/">Nosotros</a></li><li><a href="/servicios/">Servicios</a></li><li><a href="/proyectos/">Proyectos</a></li><li><a href="/#contacto">Contacto</a></li><li><a href={BROCHURE} target="_blank" rel="noopener">Brochure</a></li></ul></div>
       <div><h4>Especialidades</h4><ul>{Object.entries(FAMILIAS).map(([f, n]) => <li><a href={`/servicios/#esp-${f}`}>{n}</a></li>)}<li><a class="foot-mas" href="/servicios/">Ver los {SERVICIOS.length} servicios</a></li></ul></div>
       <div class="foot-contacto"><h4>Contacto</h4><ul><li><a href={`tel:${TEL}`}>{TEL_TXT}</a></li><li><a href={`mailto:${MAIL}`}>{MAIL}</a></li><li>Av. República de Colombia 625, Of. 501, San Isidro</li><li>Lunes a viernes, 8 a.m. a 6 p.m.</li></ul></div>
     </div>
