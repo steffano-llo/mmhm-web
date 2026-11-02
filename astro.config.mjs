@@ -14,4 +14,6 @@ export default defineConfig({
   // 'compile': sharp optimiza en el build, porque no corre dentro de Workers.
   adapter: cloudflare({ imageService: 'compile' }),
   integrations: [react(), keystatic()],
+  // astro:env/server es un módulo virtual: el prebundling de Vite no lo resuelve en modo dev.
+  vite: { optimizeDeps: { exclude: ['@keystatic/astro/api'] } },
 });

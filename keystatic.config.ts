@@ -7,6 +7,32 @@ const modoGithub = import.meta.env.PUBLIC_KEYSTATIC_MODO === 'github';
 const textoOpcional = (label: string) => fields.text({ label });
 const textoLargo = (label: string) => fields.text({ label, multiline: true });
 
+// Las fotos viven junto a datos.md y el frontmatter las nombra como ./foto.jpg. Keystatic no lo soporta
+// de fábrica: guarda el "./" dentro del nombre y arma rutas que su propio API rechaza.
+const sinPunto = (v: unknown) => (typeof v === 'string' ? v.replace(/^\.\//, '') : v);
+const imagen = (label: string) => {
+  const base = fields.image({ label, directory: 'src/content/obras' });
+  return {
+    ...base,
+    filename: (v: any, a: any) => base.filename(sinPunto(v), a),
+    parse: (v: any, a: any) => base.parse(sinPunto(v), a),
+    serialize: (v: any, a: any) => {
+      // Sin sugerencia de nombre: Keystatic renombraría la foto a <campo>.jpg y la galería la clasifica por prefijo.
+      const r = base.serialize(v, { ...a, suggestedFilenamePrefix: undefined });
+      return r.value ? { ...r, value: './' + r.value } : r;
+    },
+  } as typeof base;
+};
+
+// Omite la casilla cuando tiene su valor por defecto, para no agregar claves a obras que no la tienen.
+const casilla = (label: string, defaultValue = false) => {
+  const base = fields.checkbox({ label, defaultValue });
+  return {
+    ...base,
+    serialize: (v: boolean) => (v === defaultValue ? { value: undefined } : base.serialize(v)),
+  } as typeof base;
+};
+
 export default config({
   storage: modoGithub
     ? { kind: 'github', repo: { owner: 'steffano-llo', name: 'mmhm-web' } }
@@ -40,21 +66,14 @@ export default config({
           label: 'Coordenadas',
           validation: { length: { max: 2 } },
         }),
-        portada: fields.image({ label: 'Portada' }),
-        antes: fields.image({ label: 'Antes' }),
-        antesAlineado: fields.checkbox({ label: 'Antes alineado', defaultValue: true }),
-        despuesComparar: fields.image({ label: 'Después para comparar' }),
-        prensa: fields.object(
-          {
-            t: textoOpcional('Título'),
-            fuente: textoOpcional('Fuente'),
-            fecha: textoOpcional('Fecha'),
-            url: fields.url({ label: 'Enlace' }),
-          },
-          { label: 'Nota de prensa' },
-        ),
-        destacada: fields.checkbox({ label: 'Destacada en el Inicio' }),
-        destacadaListado: fields.checkbox({ label: 'Destacada en el listado' }),
+        portada: imagen('Portada'),
+        antes: imagen('Antes'),
+        antesAlineado: casilla('Antes alineado', true),
+        despuesComparar: imagen('Después para comparar'),
+        // Un objeto vacío rompería el esquema Zod: se conserva tal cual (T13 debe resolver su edición).
+        prensa: fields.ignored(),
+        destacada: casilla('Destacada en el Inicio'),
+        destacadaListado: casilla('Destacada en el listado'),
         reto: textoLargo('Reto'),
         solucion: textoLargo('Solución'),
         resultado: textoLargo('Resultado'),
@@ -71,33 +90,9 @@ export default config({
           label: 'Lo que hicimos',
           itemLabel: (p) => p.value,
         }),
-        recorrido: fields.object(
-          {
-            set: fields.select({
-              label: 'Set',
-              options: [
-                { label: 'Ríos', value: 'rios' },
-                { label: 'Bolognesi', value: 'bolognesi' },
-                { label: 'Genérico', value: 'generico' },
-              ],
-              defaultValue: 'generico',
-            }),
-            stat: fields.array(textoOpcional('Dato'), { label: 'Dato destacado', validation: { length: { max: 2 } } }),
-            fases: fields.array(
-              fields.object({
-                t: textoOpcional('Título'),
-                s: textoOpcional('Subtítulo'),
-                lead: textoLargo('Entrada'),
-                inc: fields.array(textoOpcional('Incluye'), { label: 'Incluye', itemLabel: (p) => p.value }),
-                out: textoOpcional('Resultado'),
-                foto: fields.image({ label: 'Foto' }),
-              }),
-              { label: 'Fases', itemLabel: (p) => p.fields.t.value },
-            ),
-          },
-          { label: 'Recorrido' },
-        ),
-        borrador: fields.checkbox({ label: 'Borrador' }),
+        // Ídem: un recorrido sin fases incumple .length(5).
+        recorrido: fields.ignored(),
+        borrador: casilla('Borrador'),
         // Las obras son Markdown solo con frontmatter: sin cuerpo.
         cuerpo: fields.emptyContent({ extension: 'md' }),
       },
