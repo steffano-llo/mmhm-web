@@ -27,22 +27,26 @@ const obras = Object.fromEntries((await getObras()).map((o) => [o.id, o]));
         ))}
       </nav>
       <div class="svc-list">
-        {SERVICIOS.map((s, i) => (
-          <article class="svc-item" id={`servicio-${s.id}`}>
-            <div class="svc-media"><img src={s.img} alt={s.t} loading="lazy"><span class="svc-num" aria-hidden="true">{nn(i)}</span></div>
-            <div class="svc-body">
-              <small>{FAMILIAS[s.f]}</small>
-              <h2>{s.t}</h2>
-              <p>{s.d}</p>
-              <div class="svc-cols">
-                <div><h4>Alcance</h4><ul class="checks">{s.a.map((x) => <li>{x}</li>)}</ul></div>
-                <div><h4>Obras relacionadas</h4><div class="chips-rel">
-                  {s.obras.filter((id) => obras[id]).map((id) => <a href={urlObra(id)}><Icon d={IC.pin} w={2.2} />{obras[id].data.titulo}</a>)}
-                </div></div>
-              </div>
-              <a class="btn btn-primary" href={`/?servicio=${encodeURIComponent(s.t)}#contacto`}>Solicitar información</a>
-            </div>
-          </article>
+        {Object.keys(FAMILIAS).map((f) => (
+          <div class="svc-fam" id={`esp-${f}`}>
+            {SERVICIOS.map((s, i) => s.f === f && (
+              <article class="svc-item" id={`servicio-${s.id}`}>
+                <div class="svc-media"><img src={s.img} alt={s.t} loading="lazy"><span class="svc-num" aria-hidden="true">{nn(i)}</span></div>
+                <div class="svc-body">
+                  <small>{FAMILIAS[s.f]}</small>
+                  <h2>{s.t}</h2>
+                  <p>{s.d}</p>
+                  <div class="svc-cols">
+                    <div><h4>Alcance</h4><ul class="checks">{s.a.map((x) => <li>{x}</li>)}</ul></div>
+                    <div><h4>Obras relacionadas</h4><div class="chips-rel">
+                      {s.obras.filter((id) => obras[id]).map((id) => <a href={urlObra(id)}><Icon d={IC.pin} w={2.2} />{obras[id].data.titulo}</a>)}
+                    </div></div>
+                  </div>
+                  <a class="btn btn-primary" href={`/?servicio=${encodeURIComponent(s.t)}#contacto`}>Solicitar información</a>
+                </div>
+              </article>
+            ))}
+          </div>
         ))}
       </div>
     </div>
