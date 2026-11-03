@@ -24,4 +24,5 @@ Rama: feat/t12-spike-panel. Entrega: sin push ni merge salvo pedido expreso. Pru
 - L2 (2026-11-02), usuario: "Aprobado, con estos cambios:Antes de crear feat/t12-spike-panel, confirma con git log --oneline que la rama de origen incluye T02 a T08. Si no, dime cuál rama las tiene.Mantén la aprobación manual de comandos en toda la tarea."
 - L3 (2026-11-02), usuario: "Sí, instala sin aprobar scripts, con las versiones exactas del plan (--save-exact). Después prueba workerd --version, esbuild --version, npm run build y npm ls astro. Si algo falla, dime qué script hace falta y por qué antes de aprobarlo. Sin --force ni --legacy-peer-deps."
 - L4: este documento se creó después de T3, tarde respecto a lo previsto en el plan.
+- L4b: revisión nativa con base 768c613 otorgada por el usuario y rechazada por `lens_context_budget_exceeded`, sin crear autoridad. Evaluación del rango 0c4894f..HEAD: riesgo medio, `review_due: false`, `under_budget`. Queda pendiente en el tramo.
 - L5: evidencia y detalle de las pruebas en docs/spike-cms.md. Siguiente paso: `wrangler login` y GitHub App.

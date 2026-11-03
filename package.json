@@ -5,7 +5,9 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
+    "dev:panel": "astro dev --mode github --port 4321 --strictPort",
     "build": "astro build",
+    "build:panel": "astro build --mode github",
     "preview": "astro preview"
   },
   "dependencies": {

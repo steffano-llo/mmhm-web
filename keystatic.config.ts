@@ -1,8 +1,8 @@
 // Configuración de la prueba técnica T12. Cubre el esquema actual de obras, sin etiquetas finales (eso es T13).
 import { collection, config, fields } from '@keystatic/core';
 
-// Por defecto trabaja en local. El modo GitHub solo se activa con PUBLIC_KEYSTATIC_MODO=github.
-const modoGithub = import.meta.env.PUBLIC_KEYSTATIC_MODO === 'github';
+// Por defecto trabaja en local. El modo GitHub se activa con --mode github (npm run dev:panel, build:panel).
+const modoGithub = import.meta.env.MODE === 'github';
 
 const textoOpcional = (label: string) => fields.text({ label });
 const textoLargo = (label: string) => fields.text({ label, multiline: true });
