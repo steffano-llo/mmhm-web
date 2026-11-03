@@ -17,7 +17,7 @@ Rama: feat/t12-spike-panel. Entrega: sin push ni merge salvo pedido expreso. Pru
 - T4 (S2) inline: ajustar TAREAS.md. Hecho en local: ese archivo está ignorado por git y no entra en commits.
 - T5 (S6c) inline: vista previa desplegada y verificada. Hecho, commit d36fca9.
 - T6 (S6d, S6e) inline: login del usuario y commits 28bd1de y 59bdf23 en spike/t12-guardado, verificados con gh api. Hecho.
-- T7 (S6) inline: recomendación, revisión visual y verificación independiente. Pendiente.
+- T7 (S6) inline: recomendación escrita. Revisión visual y verificación independiente omitidas por decisión del usuario. Hecho.
 
 ## Log
 - L1 (2026-11-02), pedido original: "Ejecuta la tarea T12 (prueba técnica del panel) con estas aclaraciones", ver S1 a S6. "Antes de actuar, muéstrame el plan."

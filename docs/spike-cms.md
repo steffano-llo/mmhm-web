@@ -1,6 +1,6 @@
 # Prueba técnica del panel (T12): Keystatic + Cloudflare
 
-Estado: **pruebas (a) a (e) respondidas**. Faltan la recomendación, la revisión visual y la verificación independiente.
+Estado: **cerrada**. Recomendación: seguir con Keystatic en modo GitHub. Queda sin probar que el sitio se reconstruya tras un guardado.
 
 ## Resultados
 
@@ -109,7 +109,7 @@ Se probó el build en modo GitHub con `wrangler dev --local` (runtime `workerd`)
 - `/_worker.js/index.js` y `/_routes.json` responden 404: el código del servidor no se expone.
 - `/api/keystatic/github/login` responde 500 porque faltan las variables, con el mensaje propio de Keystatic. Es lo esperado sin secretos.
 - Las 21 páginas públicas salieron idénticas byte a byte a la línea base al agregar el adaptador, antes de los ajustes posteriores de configuración.
-- Keystatic lee los secretos en tiempo de ejecución con `getSecret`, no los incrusta en el build según su código. [PENDIENTE: comprobarlo sobre el build real con `.env`.]
+- Keystatic lee los secretos en tiempo de ejecución con `getSecret`, no los incrusta en el build según su código. Comprobado sobre el build de `npm run build:panel`: los tres secretos no aparecen en `dist/`, ni en los assets ni en el bundle del Worker. Solo aparece el slug de la App, que es público.
 
 Ajuste necesario en modo dev: excluir `@keystatic/astro/api` de `optimizeDeps`, porque Vite no resuelve `astro:env/server` al prebundlear.
 
@@ -117,16 +117,41 @@ Ajuste necesario en modo dev: excluir `@keystatic/astro/api` de `optimizeDeps`, 
 
 - **`npm audit`:** 13 avisos (1 crítico, 6 altos, 5 moderados, 1 bajo). El crítico es del propio `astro` y `sharp` también tiene uno alto: ya estaban en el proyecto. `miniflare`, `undici` y `ws` llegan con el adaptador. El arreglo propuesto exige Astro 7 y adaptador 14, fuera del alcance de esta prueba. Conviene evaluarlo antes de T18.
 - **Fork público:** los commits de prueba quedan visibles. T14 exige repo privado para producción.
-- **`.assetsignore` y CRLF:** con `autocrlf` puede quedar en CRLF en una copia de Windows. [PENDIENTE: revisar si el despliegue desde Windows lo respeta.]
-
-## GitHub App o Keystatic Cloud
-
-[PENDIENTE: decidir con el resultado de (d) y (e).]
+- **`.assetsignore` y CRLF:** con `autocrlf` puede quedar en CRLF en una copia de Windows. El despliegue desde Windows lo respetó con el archivo en LF (`/_worker.js/index.js` responde 404). Con el archivo en CRLF no se probó.
 
 ## Recomendación
 
-[PENDIENTE: decidir al cerrar (c), (d) y (e).]
+**Seguir con Keystatic en modo GitHub.** Las pruebas (c), (d) y (e) pasaron en Cloudflare, sin secretos en el build y con las páginas públicas idénticas a la línea base. No hace falta el Plan B (Decap). La condición es resolver antes la lista siguiente: de fábrica, Keystatic no maneja el formato actual de las obras.
+
+### Lo que T13 debe resolver
+
+1. **Listas vacías nuevas.** Keystatic agrega `cifras: []` y `hicimos: []`. `cifras` ya se oculta si está vacía (`[slug].astro:68`). `hicimos` no: `[slug].astro:113` muestra una lista vacía. Ocultar la sección perdería el respaldo actual, así que una lista vacía debe mostrar el texto de `solucion`, como cuando falta el campo.
+2. **Rama base.** El panel crea las ramas desde `main` del fork, que sigue sin T01 a T08. Antes de usarlo en serio, `main` tiene que estar al día.
+3. **Mensajes de commit genéricos.** Dicen `Update src/content/obras/<obra>/datos`. En `@keystatic/core` 0.6.9 el texto está fijo en el código de la interfaz y la configuración no ofrece ninguna opción para cambiarlo. Personalizarlo exigiría parchear el paquete, lo que no se recomienda sin evaluar antes el costo de mantenerlo.
+4. **Hosting.** El panel depende del adaptador de Cloudflare. Si algún día se envía este trabajo al repositorio del líder, que hoy está en Vercel, la decisión de hosting debe estar acordada con él.
+5. **Fallos descritos arriba.** `coords: []` rompe el build, `recorrido` y `prensa` aún no se pueden editar, y conviene normalizar las 14 obras en un solo commit. Ver "Fallos que T13 debe resolver".
+6. **Envoltorio de imágenes.** `imagen()` sobrescribe métodos internos del campo: hay que volver a probarlo en cada actualización de Keystatic.
+
+## Decisión pendiente: GitHub App o Keystatic Cloud
+
+Queda por decidir. Solo se probó la GitHub App.
+
+| | GitHub App | Keystatic Cloud |
+|---|---|---|
+| Estado | Probada: login y commits funcionan | Sin probar |
+| Usuarios | Sin límite propio; cada editor necesita cuenta de GitHub con permiso de escritura | Gratis hasta 3 usuarios, según `TAREAS.md`. [PENDIENTE: confirmar el límite vigente] |
+| A cargo del equipo | Instalación de la App, tres secretos y callback por cada dominio | [PENDIENTE: evaluar al probarla] |
+
+Hay que decidirlo antes de T14, porque define los secretos, los roles y el manual.
 
 ## No probado
 
-"El sitio se reconstruye" tras un guardado (aceptación de T12) requiere conectar Cloudflare al fork y queda fuera de (a)–(e).
+- **"El sitio se reconstruye" tras un guardado:** **no probado**. Es parte de la aceptación de T12 y requiere conectar Cloudflare al fork. Por eso esa aceptación queda incompleta.
+- **Crear una obra en la vista previa:** no probado. En modo GitHub solo se editó una obra existente; la creación se probó en modo local.
+- **Cloudflare Access (T14)** tampoco se probó: hoy `/keystatic` es público y su acceso depende del login de GitHub.
+
+## Omitido por decisión del usuario
+
+- **Revisión visual en 360, 768 y 1280 px:** las 21 páginas públicas salieron idénticas byte a byte a la línea base, también en el build final de `build:panel`.
+- **Verificación independiente.**
+- **Revisión de Gentle AI:** no se hizo. Falló dos veces por exceder el presupuesto de contexto y después se dejó de ejecutar.
