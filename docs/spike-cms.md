@@ -1,6 +1,6 @@
 # Prueba técnica del panel (T12): Keystatic + Cloudflare
 
-Estado: **en curso**. Faltan las pruebas que requieren las cuentas de Cloudflare y GitHub.
+Estado: **pruebas (a) a (e) respondidas**. Faltan la recomendación, la revisión visual y la verificación independiente.
 
 ## Resultados
 
@@ -8,9 +8,9 @@ Estado: **en curso**. Faltan las pruebas que requieren las cuentas de Cloudflare
 |---|---|---|
 | (a) El modo local escribe el frontmatter correcto, con rutas de imagen relativas | **Sí, con ajustes** | Da `./durante-t12.jpg` solo con un envoltorio propio. De fábrica no funciona |
 | (b) Abrir y guardar sin editar no produce diferencias | **Sí, pero no prueba nada** | El panel no escribe si no hay cambios. Con un cambio real, **no**: ver detalle |
-| (c) Las rutas del panel funcionan en Cloudflare con el sitio estático | **Parcial** | Sitio estático y `/keystatic`, sí. El API del panel falta probarlo con secretos: da 500 sin ellos |
-| (d) El login con GitHub funciona | [PENDIENTE: GitHub App] | Sin probar |
-| (e) Un guardado crea un commit en una rama del fork | [PENDIENTE: depende de (d)] | Sin probar |
+| (c) Las rutas del panel funcionan en Cloudflare con el sitio estático | **Sí** | Sitio estático, `/keystatic` y su API funcionan en la vista previa. El API quedó probado por (d) y (e) |
+| (d) El login con GitHub funciona | **Sí** | Probado por el usuario en la vista previa, con la GitHub App. Requirió corregir la instalación para poder crear ramas |
+| (e) Un guardado crea un commit en una rama del fork | **Sí** | Dos guardados crearon dos commits en `spike/t12-guardado`. `main` del fork y upstream no cambiaron |
 
 ## Versiones instaladas
 
@@ -73,9 +73,33 @@ Worker `mmhm-web-spike` en `https://mmhm-web-spike.mmhm-prueba.workers.dev`, des
 
 - **Sitio estático:** `/`, `/proyectos/`, `/proyectos/rio-lurin/` y `/servicios/` responden 200, con cuerpo idéntico byte a byte a `dist/` y `Cache-Control: public, max-age=0, must-revalidate`, propio de los assets. `/` conserva `noindex, nofollow`.
 - **Panel:** `/keystatic` y `/keystatic/collection/obras` responden 200 sin esa cabecera y no existen como archivos en `dist/`, así que los responde el Worker. En Chrome, `/keystatic` muestra "Log in with GitHub".
-- **API:** `/api/keystatic/github/login` y `/api/keystatic/github/refresh-token` responden 500 hasta cargar los secretos.
+- **API:** antes de cargar los secretos, `/api/keystatic/github/login` y `/api/keystatic/github/refresh-token` respondían 500. Con los tres secretos cargados con `wrangler secret put` y el callback agregado en la GitHub App, el login y los guardados funcionaron.
 - **No expuestos:** `/_worker.js/index.js`, `/_routes.json`, `/.assetsignore` y `/.env` responden 404.
 - **Para T14:** `/keystatic` no lleva `noindex`, a diferencia de las páginas públicas.
+
+## Detalle de (d)
+
+Probado por el usuario en la vista previa; el resultado no se observó de forma automática. Los commits de (e) quedaron atribuidos a su cuenta, lo que es compatible con ese login.
+
+Al crear la rama, el panel respondió `Resource not accessible by integration` hasta que el usuario corrigió la instalación de la GitHub App en el repositorio. No se registró qué ajuste exacto cambió. El manual de T14 debe indicar cómo revisar esa instalación.
+
+## Detalle de (e)
+
+Verificado con `gh api` (solo GET) sobre `repos/steffano-llo/mmhm-web`.
+
+| Commit | Autor | Archivos | Líneas | Cambio |
+|---|---|---|---|---|
+| `28bd1de` | `steffano-llo` | `src/content/obras/rio-lurin/datos.md` | +20 -10 | Agrega "Probando." al `resumen` y normaliza todo el YAML |
+| `59bdf23` | `steffano-llo` | `src/content/obras/rio-lurin/datos.md` | +2 -2 | Pasa "Probando." al `titulo` y restaura el `resumen` |
+
+- **Rama:** `spike/t12-guardado`, 2 commits delante de `main` y 0 detrás, base `59692ac`. Se creó desde `main` del fork, que sigue en el prototipo: no contiene T01 a T08.
+- **Commit:** lo firma GitHub (`web-flow`, verificado), con el usuario como autor. El mensaje es genérico: `Update src/content/obras/rio-lurin/datos`. No dice qué cambió, algo a tener en cuenta para el historial que leerá personal no técnico.
+- **Saltos de línea:** LF en ambas versiones (0 CRLF: 15 líneas en `main`, 25 en la rama).
+- **Campos perdidos:** ninguno. `portada` sigue en `./durante-01.jpg` y las dos fotos conservan tamaño y hash de blob.
+- **Campos agregados:** `cifras: []` y `hicimos: []`. Es el fallo ya descrito: esta obra mostraría una lista vacía en "Lo que hicimos" en lugar de `solucion`.
+- **Orden de claves:** se mantiene en esta obra; `cifras` y `hicimos` entran antes de `borrador`.
+- **Comparación con el modo local:** coincide. El primer guardado normaliza (30 líneas) y el siguiente solo toca lo editado. Los 4 cambios del segundo commit corresponden a dos ediciones: `titulo` y `resumen`.
+- **Otros repos:** `main` del fork sigue en `59692ac`. En upstream, `git ls-remote` da `59692ac`, igual que la última referencia conocida, y tiene una sola rama.
 
 ## Detalle de (c): avance local
 
