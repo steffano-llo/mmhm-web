@@ -8,7 +8,7 @@ Estado: **en curso**. Faltan las pruebas que requieren las cuentas de Cloudflare
 |---|---|---|
 | (a) El modo local escribe el frontmatter correcto, con rutas de imagen relativas | **Sí, con ajustes** | Da `./durante-t12.jpg` solo con un envoltorio propio. De fábrica no funciona |
 | (b) Abrir y guardar sin editar no produce diferencias | **Sí, pero no prueba nada** | El panel no escribe si no hay cambios. Con un cambio real, **no**: ver detalle |
-| (c) Las rutas del panel funcionan en Cloudflare con el sitio estático | [PENDIENTE: desplegar] | En `workerd` local, sí. Falta la vista previa real |
+| (c) Las rutas del panel funcionan en Cloudflare con el sitio estático | **Parcial** | Sitio estático y `/keystatic`, sí. El API del panel falta probarlo con secretos: da 500 sin ellos |
 | (d) El login con GitHub funciona | [PENDIENTE: GitHub App] | Sin probar |
 | (e) Un guardado crea un commit en una rama del fork | [PENDIENTE: depende de (d)] | Sin probar |
 
@@ -66,6 +66,16 @@ La comparación por contenido no encontró otras pérdidas: `crematorio-surco` c
 2. **`coords: []` rompe el build.**
 3. **`recorrido` y `prensa` no son editables en esta prueba.** Con `fields.object`, las obras que no los tienen reciben `prensa: {}` y un `recorrido` sin fases, que incumplen el esquema Zod. Aquí se usa `fields.ignored()`, que los conserva sin mostrarlos.
 4. **Primer guardado ruidoso.** Conviene normalizar las 14 obras una sola vez en un commit aparte. Después, cada guardado solo muestra lo editado. La aceptación de T13 ("sin diferencias inesperadas") debe redactarse sobre esa base.
+
+## Detalle de (c): vista previa en Cloudflare
+
+Worker `mmhm-web-spike` en `https://mmhm-web-spike.mmhm-prueba.workers.dev`, desplegado con subida directa (`npx wrangler deploy`). Solo tiene el binding `ASSETS`: no se creó almacenamiento `SESSION` ni otro recurso. Antes hubo que verificar el correo de la cuenta de Cloudflare y registrar el subdominio de `workers.dev`, ambos pasos manuales.
+
+- **Sitio estático:** `/`, `/proyectos/`, `/proyectos/rio-lurin/` y `/servicios/` responden 200, con cuerpo idéntico byte a byte a `dist/` y `Cache-Control: public, max-age=0, must-revalidate`, propio de los assets. `/` conserva `noindex, nofollow`.
+- **Panel:** `/keystatic` y `/keystatic/collection/obras` responden 200 sin esa cabecera y no existen como archivos en `dist/`, así que los responde el Worker. En Chrome, `/keystatic` muestra "Log in with GitHub".
+- **API:** `/api/keystatic/github/login` y `/api/keystatic/github/refresh-token` responden 500 hasta cargar los secretos.
+- **No expuestos:** `/_worker.js/index.js`, `/_routes.json`, `/.assetsignore` y `/.env` responden 404.
+- **Para T14:** `/keystatic` no lleva `noindex`, a diferencia de las páginas públicas.
 
 ## Detalle de (c): avance local
 
