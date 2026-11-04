@@ -29,9 +29,7 @@ const og = new URL(image ?? '/assets/hero-excavadora.jpg', Astro.site).href;
 <meta name="twitter:image" content={og} />
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/logo-blanco.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 {leaflet && <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">}
 <slot name="head" />
 <script is:inline>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
