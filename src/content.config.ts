@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { SERVICIO_IDS } from './lib/site';
 
 const obras = defineCollection({
   loader: glob({ pattern: '*/datos.md', base: './src/content/obras', generateId: ({ entry }) => entry.split('/')[0] }),
@@ -7,6 +8,8 @@ const obras = defineCollection({
     orden: z.number(),
     titulo: z.string(),
     tipo: z.enum(['geo', 'rio', 'pub', 'edif']),
+    /** Ids de los servicios aplicados (ver SERVICIOS en site.ts); alimenta "Obras relacionadas" y la ficha. */
+    servicios: z.array(z.enum(SERVICIO_IDS)).default([]),
     resumen: z.string(),
     ubicacion: z.string().optional(),
     cliente: z.string().optional(),

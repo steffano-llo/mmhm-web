@@ -3,8 +3,8 @@ import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import { IC } from '../../lib/icons';
 import { SERVICIOS, FAMILIAS, nn } from '../../lib/site';
-import { getObras, urlObra } from '../../lib/obras';
-const obras = Object.fromEntries((await getObras()).map((o) => [o.id, o]));
+import { getObras, urlObra, obrasDeServicio } from '../../lib/obras';
+const obras = await getObras();
 ---
 <Base title="Servicios | MM High Metrik Engineers" nav="servicios" description={`${SERVICIOS.length} servicios de construcción: ${SERVICIOS.map((s) => s.sh.toLowerCase()).join(", ")}.`}>
   <div class="page-hero">
@@ -39,7 +39,7 @@ const obras = Object.fromEntries((await getObras()).map((o) => [o.id, o]));
                   <div class="svc-cols">
                     <div><h4>Alcance</h4><ul class="checks">{s.a.map((x) => <li>{x}</li>)}</ul></div>
                     <div><h4>Obras relacionadas</h4><div class="chips-rel">
-                      {s.obras.filter((id) => obras[id]).map((id) => <a href={urlObra(id)}><Icon d={IC.pin} w={2.2} />{obras[id].data.titulo}</a>)}
+                      {obrasDeServicio(obras, s.id).map((o) => <a href={urlObra(o)}><Icon d={IC.pin} w={2.2} />{o.data.titulo}</a>)}
                     </div></div>
                   </div>
                   <a class="btn btn-primary" href={`/contacto/?servicio=${encodeURIComponent(s.t)}`}>Solicitar información</a>

@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 const { obra, prev, next, todas } = Astro.props as { obra: Obra; prev: Obra | null; next: Obra | null; todas: Obra[] };
 const d = obra.data;
 const tipo = TIPOS[d.tipo as TipoKey];
-const servicios = serviciosDe(obra.id);
+const servicios = serviciosDe(obra);
 const wa = waObra(obra);
 
 /* ---------- Fotos: mosaico + galería en modal ---------- */

@@ -2,6 +2,12 @@
 orden: 14
 titulo: Cementerio Municipal de Surco
 tipo: edif
+servicios:
+  - demoliciones
+  - obras-civiles
+  - ambientes-industriales
+  - contraincendios
+  - instalaciones-electricas
 resumen: Construcción de crematorio y columbario y remodelación del velatorio del Cementerio Municipal de Santiago de Surco.
 ubicacion: Santiago de Surco, Lima
 cliente: Municipalidad de Santiago de Surco

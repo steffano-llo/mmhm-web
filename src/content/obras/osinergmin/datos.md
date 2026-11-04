@@ -2,6 +2,10 @@
 orden: 10
 titulo: Sede Central Osinergmin
 tipo: edif
+servicios:
+  - demoliciones
+  - estructuras-metalicas
+  - contraincendios
 resumen: Adecuación de la escalera de evacuación de la sede central de Osinergmin, en 14 niveles, con compartimentación cortafuego.
 ubicacion: Magdalena del Mar, Lima
 cliente: Osinergmin

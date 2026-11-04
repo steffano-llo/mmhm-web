@@ -2,6 +2,8 @@
 orden: 4
 titulo: Río Rímac, tramo Ramiro Prialé
 tipo: rio
+servicios:
+  - defensas-riberenas
 resumen: Limpieza y descolmatación del cauce con protección de roca al volteo en la margen derecha.
 ubicacion: Lurigancho-Chosica, Lima
 tramo: Km 0+000 a 3+850

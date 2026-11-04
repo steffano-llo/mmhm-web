@@ -2,6 +2,11 @@
 orden: 2
 titulo: Plaza Bolognesi
 tipo: pub
+servicios:
+  - demoliciones
+  - obras-civiles
+  - patrimonio-cultural
+  - plazas-publicas
 resumen: Renovación de pisos, sardineles y áreas verdes de la Plaza Bolognesi, en el Centro Histórico de Lima.
 ubicacion: Cercado de Lima
 cliente: PROLIMA, Municipalidad de Lima

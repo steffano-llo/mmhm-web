@@ -44,7 +44,9 @@ export async function getObras(): Promise<Obra[]> {
 }
 
 export const urlObra = (o: Obra | string) => `/proyectos/${typeof o === 'string' ? o : o.id}/`;
-export const serviciosDe = (slug: string) => SERVICIOS.filter((s) => s.obras.includes(slug));
+export const serviciosDe = (o: Obra) => SERVICIOS.filter((s) => o.data.servicios.includes(s.id));
+/** Obras de un servicio; conserva el orden de la lista recibida (getObras ya ordena y filtra borradores). */
+export const obrasDeServicio = (obras: Obra[], id: string) => obras.filter((o) => o.data.servicios.includes(id));
 export const tipoNombre = (o: Obra) => TIPOS[o.data.tipo].n;
 export const waObra = (o: Obra) => waUrl(`Hola, vi la obra "${o.data.titulo}" en su web y quisiera cotizar un proyecto similar.`);
 

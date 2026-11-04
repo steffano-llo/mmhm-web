@@ -2,6 +2,9 @@
 orden: 3
 titulo: "Descolmatación Río Lurín"
 tipo: "rio"
+servicios:
+  - movimiento-de-tierras
+  - defensas-riberenas
 resumen: "Descolmatación, encauzamiento y conformación de diques en el cauce del Río Lurín."
 ubicacion: "Río Lurín, Lima"
 cliente: "Municipalidad de Lima"

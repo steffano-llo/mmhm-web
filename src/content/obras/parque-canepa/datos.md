@@ -2,6 +2,8 @@
 orden: 5
 titulo: C.C. Parque Cánepa
 tipo: edif
+servicios:
+  - contraincendios
 resumen: Acondicionamiento del centro comercial para la obtención del certificado ITSE.
 ubicacion: La Victoria, Lima
 coords:

@@ -2,6 +2,8 @@
 orden: 11
 titulo: Pantanos de Villa
 tipo: rio
+servicios:
+  - defensas-riberenas
 resumen: Colocación y conformación de enrocado de protección en los canales Ganaderos 01, Ganaderos 02 y Vista Alegre 01.
 ubicacion: Chorrillos, Lima
 coords:

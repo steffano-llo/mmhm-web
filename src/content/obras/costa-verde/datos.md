@@ -2,6 +2,8 @@
 orden: 1
 titulo: Costa Verde
 tipo: geo
+servicios:
+  - geomallas
 resumen: Instalación de geomallas para estabilizar el acantilado de la Costa Verde, con personal trabajando en altura frente al mar.
 ubicacion: Magdalena del Mar, Miraflores y Barranco, Lima
 coords:

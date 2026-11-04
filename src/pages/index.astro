@@ -15,7 +15,7 @@ const caso = obras.find((o) => o.data.destacadaInicio) ?? obras.find((o) => o.da
 const TEXTOS_CASO: Record<string, { alt: string; cota: string; servicio: string }> = {
   'costa-verde': { alt: 'Personal instalando geomallas en el acantilado de la Costa Verde, con el mar al fondo', cota: 'Acantilado de Miraflores', servicio: 'Geomallas y taludes' },
 };
-const textoCaso = caso && (TEXTOS_CASO[caso.id] ?? { alt: caso.data.titulo, cota: caso.data.ubicacion, servicio: serviciosDe(caso.id)[0]?.t });
+const textoCaso = caso && (TEXTOS_CASO[caso.id] ?? { alt: caso.data.titulo, cota: caso.data.ubicacion, servicio: serviciosDe(caso)[0]?.t });
 const strip = obras.filter((o) => o.data.destacada && o.data.portada && o.id !== caso?.id).slice(0, MAX_OBRAS_FRANJA);
 const rimac = byId['rio-rimac-ramiro-priale'];
 const total = obras.length;
