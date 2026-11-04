@@ -132,6 +132,24 @@ Ajuste necesario en modo dev: excluir `@keystatic/astro/api` de `optimizeDeps`, 
 5. **Fallos descritos arriba.** `coords: []` rompe el build, `recorrido` y `prensa` aún no se pueden editar, y conviene normalizar las 14 obras en un solo commit. Ver "Fallos que T13 debe resolver".
 6. **Envoltorio de imágenes.** `imagen()` sobrescribe métodos internos del campo: hay que volver a probarlo en cada actualización de Keystatic.
 
+### Estado tras T13
+
+Probado solo en modo local. El guardado en modo GitHub con esta configuración sigue sin probar.
+
+- **Resuelto:** punto 1 (`hicimos` vacío muestra `solucion`) y, del punto 5, `coords: []` (ahora es un texto `lat, lng`) y la normalización de las 14 obras.
+- **Sigue abierto:** puntos 2, 3, 4 y 6. Del punto 5, `recorrido` y `prensa` siguen sin poder editarse (`fields.ignored()`), por decisión del usuario en el caso de `recorrido`.
+- **`imagen()` en una lista de objetos:** funciona. Editar, agregar, reordenar y quitar fotos produce solo el cambio esperado.
+- **Portada:** guardar sin tocarla la conserva. Reemplazarla o quitarla no borra el archivo si `fotos` también lo usa.
+- **Sin ruido:** editar un campo en cada una de las 14 obras cambió una sola línea en cada una.
+
+Fallos encontrados:
+
+- **Nombre repetido (corregido):** subir una foto con un nombre existente sobrescribía la otra sin avisar. Ahora cada foto subida recibe un sufijo único. Como efecto, subir la misma foto en dos campos crea dos archivos: la ficha la mostraría dos veces si se sube como portada y en la galería.
+- **Foto usada por `recorrido` (abierto):** quitarla de `fotos` borra el archivo, porque Keystatic no ve ese campo, y el build falla con `ImageNotFound`. Hay una advertencia en la ayuda del campo.
+- **Interfaz (abierto):** `locale: 'es-ES'` traduce solo una parte. Siguen en inglés "Choose file", "Remove", "Done", "Regenerate" y el diálogo de eliminar, que además dice "This action cannot be undone", aunque el modo GitHub lo deja en el historial.
+- **Modo dev en Windows (abierto):** al cambiar varios archivos seguidos, Astro puede mostrar `UnknownFilesystemError` al escribir `.astro/data-store.json`, y tras borrar una foto la ficha puede responder 404 o 500 hasta reiniciar `dev`. El build no se ve afectado.
+- **Modo local (abierto):** eliminar una obra o cambiar su slug deja una carpeta vacía. Git la ignora.
+
 ## Decisión pendiente: GitHub App o Keystatic Cloud
 
 Queda por decidir. Solo se probó la GitHub App.

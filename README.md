@@ -16,6 +16,14 @@ Cada obra es una carpeta en `src/content/obras/<obra>/`:
 - `antesAlineado: true` solo si la foto del antes tiene el mismo encuadre que la portada (activa el deslizador);
   si no, se muestra la comparación lado a lado.
 
+## Panel de obras (Keystatic)
+- Con `npm run dev`, el panel está en http://localhost:4321/keystatic y guarda directamente en los archivos locales.
+- `npm run dev:panel` y `npm run build:panel` usan el modo GitHub: cada guardado es un commit y requiere el login de la GitHub App.
+- `recorrido` y `prensa` no se editan en el panel: se conservan tal cual y se cambian en `datos.md`.
+- Antes de quitar una foto de la galería, revise que `recorrido` no la use. Keystatic borraría el archivo y el build fallaría con `ImageNotFound`; la foto se recupera del historial.
+- Las fotos subidas se renombran sin espacios ni tildes y con un sufijo único, para no sobrescribir otra foto de la obra.
+- Al actualizar `@keystatic/core`, vuelva a probar `imagen()` de `keystatic.config.ts`: sobrescribe métodos internos del campo.
+
 ## Comandos
 npm install      # una vez
 npm run dev      # vista local en http://localhost:4321
