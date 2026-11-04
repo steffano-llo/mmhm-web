@@ -144,12 +144,12 @@ const nFotos = galeria.length;
         <h2 class="sr">Recorrido de la obra</h2>
         <figure class="proc-fig" id="procFig">
           <div class="ruta-stage" id="procStage" style={`aspect-ratio:${rec.W}/${rec.H}`}>
-            <img class="proc-base" src={rec.base} width={rec.W} height={rec.H} alt="" loading="lazy">
+            <img class="proc-base" {...rec.base} sizes="(max-width:1200px) 100vw, 1160px" width={rec.W} height={rec.H} alt="" loading="lazy">
             <svg class="ruta-glow" viewBox={`0 0 ${rec.W} ${rec.H}`} aria-hidden="true"><defs><filter id="rgBlur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="8" /></filter></defs><path class="halo" id="gHalo" pathLength="100" /><path class="core" id="gCore" pathLength="100" /></svg>
             <div class:list={['proc-ttl', { center: rec.ttl.center }]} style={`left:${rec.ttl.x}%;top:${rec.ttl.y}%`}><p class="k">Recorrido de la obra</p><p>{d.titulo}</p><i></i></div>
             {rec.stat && <div class="proc-stat"><b>{rec.stat[0]}</b><span>{rec.stat[1]}</span></div>}
             {rec.piezas.map((p, i) => (
-              <button class="pz" data-i={i} style={p.style} aria-label={`Fase ${i + 1}: ${rec!.data.fases[i].t}. Ver detalle`}><img src={p.src} alt="" loading="lazy"></button>
+              <button class="pz" data-i={i} style={p.style} aria-label={`Fase ${i + 1}: ${rec!.data.fases[i].t}. Ver detalle`}><img src={p.src} srcset={p.srcset} sizes="(max-width:1200px) 18vw, 210px" alt="" loading="lazy"></button>
             ))}
             {rec.data.fases.map((f, i) => (
               <div class="proc-lbl" data-i={i} style={rec!.lbl[i]}><span class="n">{i + 1}</span><b>{f.t}</b><small>{f.s}.</small></div>
