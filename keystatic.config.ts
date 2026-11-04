@@ -13,8 +13,20 @@ const obligatorio = (label: string, description?: string) =>
 // Las fotos viven junto a datos.md y el frontmatter las nombra como ./foto.jpg. Keystatic no lo soporta
 // de fábrica: guarda el "./" dentro del nombre y arma rutas que su propio API rechaza.
 const sinPunto = (v: unknown) => (typeof v === 'string' ? v.replace(/^\.\//, '') : v);
+// Nombre sin espacios ni tildes y con sufijo único: un nombre repetido sobrescribiría otra foto de la obra sin avisar.
+const nombreUnico = (original: string) => {
+  const [, base, ext = ''] = original.match(/^(.*?)(\.[^.]*)?$/)!;
+  const limpio = base.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  return `${limpio || 'foto'}-${Date.now().toString(36)}${ext.toLowerCase()}`;
+};
 const imagen = (label: string, description?: string, isRequired = false) => {
-  const base = fields.image({ label, description, directory: 'src/content/obras', validation: { isRequired } });
+  const base = fields.image({
+    label,
+    description,
+    directory: 'src/content/obras',
+    validation: { isRequired },
+    transformFilename: nombreUnico,
+  });
   return {
     ...base,
     filename: (v: any, a: any) => base.filename(sinPunto(v), a),
@@ -57,6 +69,7 @@ const coordenadas = (label: string, description: string) => {
 };
 
 export default config({
+  locale: 'es-ES',
   storage: modoGithub
     ? { kind: 'github', repo: { owner: 'steffano-llo', name: 'mmhm-web' } }
     : { kind: 'local' },
