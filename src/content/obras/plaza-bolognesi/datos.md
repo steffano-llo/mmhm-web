@@ -16,7 +16,7 @@ destacadaListado: true
 reto: La Plaza Bolognesi, en pleno Centro Histórico de Lima, tenía pisos y sardineles deteriorados. Había que renovarlos rodeados de tránsito intenso, sin cerrar la plaza y bajo supervisión permanente de PROLIMA.
 solucion: Mantenimiento y reemplazo de pisos por sectores, con cerramientos provisionales para mantener la circulación en el entorno.
 resultado: Plaza renovada en 60 días, con sus pisos, sardineles y jardines recuperados y entregada a PROLIMA.
-borrador: true
+borrador: false
 periodo: '2023'
 plazo: 60 días
 cifras:

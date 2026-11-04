@@ -13,7 +13,7 @@ destacada: true
 reto: Cada temporada de lluvias el Rímac arrastra sedimentos que reducen su cauce y elevan el riesgo de desborde y erosión en Lurigancho-Chosica, donde la Autopista Ramiro Prialé corre junto al río.
 solucion: Limpieza y descolmatación con excavadoras, incluso en turnos nocturnos, y colocación de roca al volteo en la margen derecha.
 resultado: Cauce despejado y margen derecha protegida en todo el tramo, antes del pico de lluvias.
-borrador: true
+borrador: false
 cliente: Municipalidad de Lima
 periodo: '2025'
 cifras:

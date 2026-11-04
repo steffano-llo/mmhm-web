@@ -11,7 +11,7 @@ portada: ./despues-01.jpg
 reto: Los canales del Refugio de Vida Silvestre Los Pantanos de Villa sufrían erosión en sus bordes. Había que protegerlos sin alterar el ecosistema del humedal.
 solucion: Colocación y conformación de enrocado en los canales Ganaderos 01, Ganaderos 02 y Vista Alegre 01, dentro de la zona de reglamentación especial.
 resultado: Canales Ganaderos 01, Ganaderos 02 y Vista Alegre 01 protegidos frente a la erosión.
-borrador: true
+borrador: false
 cliente: Municipalidad de Lima
 periodo: 2024 – 2025
 plazo: 90 días

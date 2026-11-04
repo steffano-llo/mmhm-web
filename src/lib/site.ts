@@ -10,6 +10,8 @@ export const HORARIO = 'Lunes a viernes, 8 a.m. a 6 p.m.';
 export const FACEBOOK = 'https://www.facebook.com/share/1EMLLRL683/?mibextid=wwXIfr';
 export const INSTAGRAM = 'https://www.instagram.com/mmhighmetrik.pe';
 export const BROCHURE = 'https://www.mmhighmetrik.com/brochure.pdf';
+/** Máximo de obras en la franja "Más obras realizadas" del Inicio. */
+export const MAX_OBRAS_FRANJA = 4;
 
 export const waUrl = (txt: string) => `https://wa.me/${WA}?text=${encodeURIComponent(txt)}`;
 

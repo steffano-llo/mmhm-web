@@ -12,7 +12,7 @@ periodo: 2024 – 2025
 portada: ./despues-01.jpg
 reto: La sede central de Osinergmin necesitaba una ruta de evacuación segura en sus 14 niveles, ejecutada con el edificio en funcionamiento.
 resultado: Escalera de evacuación compartimentada y señalizada en todo el edificio, según la normativa de seguridad.
-borrador: true
+borrador: false
 plazo: 46 días
 cifras:
 - v: '24'

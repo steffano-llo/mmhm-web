@@ -12,7 +12,7 @@ portada: ./despues-02.jpg
 reto: La Municipalidad de Santiago de Surco necesitaba ampliar los servicios de su cementerio con un crematorio, un columbario y un velatorio renovado, sin interrumpir su atención al público.
 solucion: Construcción y acondicionamiento de sala de velatorio y columbario, con instalaciones eléctricas y sistema contra incendios.
 resultado: 'Obra ejecutada por delante del cronograma: a diciembre de 2025 llevaba 72,6 % de avance frente a 63,3 % programado.'
-borrador: true
+borrador: false
 periodo: 2025 – 2026
 plazo: 120 días
 cifras:

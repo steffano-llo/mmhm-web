@@ -12,7 +12,7 @@ destacada: true
 reto: Adecuar un centro comercial de alto tránsito en La Victoria a las exigencias del certificado ITSE.
 solucion: Acondicionamiento de ambientes, señalización y equipamiento de seguridad mientras el centro comercial seguía atendiendo.
 resultado: Instalaciones acondicionadas para la Inspección Técnica de Seguridad en Edificaciones.
-borrador: true
+borrador: false
 cliente: Municipalidad de La Victoria
 periodo: '2024'
 plazo: 20 días

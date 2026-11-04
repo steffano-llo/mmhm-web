@@ -22,6 +22,8 @@ const obras = defineCollection({
     /** Nota de prensa enlazada (solo enlace y título, sin copiar fotos ni texto). */
     prensa: z.object({ t: z.string(), fuente: z.string(), fecha: z.string(), url: z.string().url() }).optional(),
     destacada: z.boolean().default(false),
+    /** Obra grande del Inicio; solo una (se valida en getObras). */
+    destacadaInicio: z.boolean().default(false),
     destacadaListado: z.boolean().default(false),
     reto: z.string().optional(),
     solucion: z.string().optional(),

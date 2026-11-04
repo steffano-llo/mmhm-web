@@ -27,7 +27,7 @@ hicimos:
 - Nuevos pisos de piedra granítica en gris, blanco y rojo, con piezas trapezoidales en el diseño circular.
 - Renovación de jardineras y reposición de bolardos y papeleras.
 resultado: Plaza renovada y entregada a PROLIMA en junio de 2024.
-borrador: true
+borrador: false
 recorrido:
   set: generico
   fases:

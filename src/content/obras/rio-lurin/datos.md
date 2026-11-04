@@ -11,5 +11,5 @@ destacada: true
 reto: "Reducir el riesgo de desborde del Río Lurín despejando su cauce y reforzando sus márgenes."
 solucion: "Descolmatación, encauzamiento y conformación de diques con una flota de excavadoras trabajando en simultáneo."
 resultado: "Cauce encauzado y diques conformados para la Municipalidad de Lima."
-borrador: true
+borrador: false
 ---

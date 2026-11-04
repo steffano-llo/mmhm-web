@@ -24,8 +24,23 @@ export function fotosDe(slug: string): Foto[] {
   return out.sort((a, b) => ORDEN_FASE.indexOf(a.fase) - ORDEN_FASE.indexOf(b.fase) || a.nombre.localeCompare(b.nombre));
 }
 
+/** Hace fallar el build si un destacado único está en más de una obra. Cuenta también los borradores. */
+function validarDestacados(obras: Obra[]) {
+  for (const campo of ['destacadaInicio', 'destacadaListado'] as const) {
+    const ids = obras.filter((o) => o.data[campo]).map((o) => o.id);
+    if (ids.length > 1) {
+      throw new Error(`Solo puede haber una obra con ${campo} y hay ${ids.length}: ${ids.join(', ')}. Déjelo en true en una sola (src/content/obras/<obra>/datos.md).`);
+    }
+  }
+}
+
+/** Obras ordenadas. Los borradores se ven en desarrollo y se ocultan en producción. */
 export async function getObras(): Promise<Obra[]> {
-  return (await getCollection('obras')).sort((a, b) => a.data.orden - b.data.orden);
+  const todas = await getCollection('obras');
+  validarDestacados(todas);
+  return todas
+    .filter((o) => import.meta.env.DEV || !o.data.borrador)
+    .sort((a, b) => a.data.orden - b.data.orden);
 }
 
 export const urlObra = (o: Obra | string) => `/proyectos/${typeof o === 'string' ? o : o.id}/`;
