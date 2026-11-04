@@ -81,4 +81,11 @@ recorrido:
     - Recepción de la obra
     out: Servicios ampliados para el distrito
     foto: ./despues-02.jpg
+fotos:
+  - img: ./despues-01.jpg
+    fase: despues
+  - img: ./despues-02.jpg
+    fase: despues
+  - img: ./despues-03.jpg
+    fase: despues
 ---

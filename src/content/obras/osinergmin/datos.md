@@ -77,4 +77,11 @@ recorrido:
     - Conformidad de Osinergmin
     out: Sede con evacuación segura
     foto: ./despues-01.jpg
+fotos:
+  - img: ./durante-01.jpg
+    fase: durante
+  - img: ./durante-02.jpg
+    fase: durante
+  - img: ./despues-01.jpg
+    fase: despues
 ---

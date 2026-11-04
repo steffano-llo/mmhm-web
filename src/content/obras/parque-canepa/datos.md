@@ -18,4 +18,11 @@ borrador: false
 cliente: Municipalidad de La Victoria
 periodo: '2024'
 plazo: 20 días
+fotos:
+  - img: ./durante-01.jpg
+    fase: durante
+  - img: ./despues-01.jpg
+    fase: despues
+  - img: ./despues-02.jpg
+    fase: despues
 ---

@@ -3,9 +3,16 @@
 ## Agregar o editar una obra
 Cada obra es una carpeta en `src/content/obras/<obra>/`:
 - `datos.md`: título, tipo (rio | geo | pub | edif), resumen, ubicación, cliente, tramo, alcance, periodo,
-  coordenadas, portada, antes, reto / solucion / resultado.
-- Fotos con prefijo de etapa: `antes-01.jpg`, `durante-01.jpg`, `despues-01.jpg`, `render-01.jpg`.
-  El prefijo decide la pestaña de la galería. La web optimiza las imágenes al compilar.
+  coordenadas, portada, antes, fotos, reto / solucion / resultado.
+- Fotos de la galería: copie el archivo en la carpeta de la obra y agréguelo a la lista `fotos` de `datos.md`.
+  Una foto que no esté en la lista no aparece en la galería. El orden de la lista es el de la galería, salvo la
+  portada, que se muestra primero. La web optimiza las imágenes al compilar.
+  ```yaml
+  fotos:
+    - img: ./durante-01.jpg
+      fase: durante        # antes | durante | despues | render
+      alt: Texto opcional  # si falta, se genera con el título y la etapa
+  ```
 - `antesAlineado: true` solo si la foto del antes tiene el mismo encuadre que la portada (activa el deslizador);
   si no, se muestra la comparación lado a lado.
 

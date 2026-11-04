@@ -83,4 +83,9 @@ prensa:
   fuente: Municipalidad de Lima
   fecha: 10 de junio de 2024
   url: https://www.munlima.gob.pe/2024/06/10/plaza-dos-de-mayo-renovada/
+fotos:
+  - img: ./durante-01.jpg
+    fase: durante
+  - img: ./despues-01.jpg
+    fase: despues
 ---

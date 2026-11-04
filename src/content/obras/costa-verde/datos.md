@@ -19,4 +19,9 @@ resultado: Talud protegido frente a desprendimientos, con menor riesgo para peat
 borrador: false
 cliente: Municipalidad de Lima
 plazo: 30 días
+fotos:
+  - img: ./durante-01.jpg
+    fase: durante
+  - img: ./durante-02.jpg
+    fase: durante
 ---

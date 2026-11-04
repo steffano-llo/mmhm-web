@@ -88,4 +88,13 @@ recorrido:
     out: Plaza entregada a PROLIMA
     foto: ./despues-01.jpg
 despuesComparar: ./comparar-despues.jpg
+fotos:
+  - img: ./antes-01.jpg
+    fase: antes
+  - img: ./durante-01.jpg
+    fase: durante
+  - img: ./despues-01.jpg
+    fase: despues
+  - img: ./despues-02.jpg
+    fase: despues
 ---

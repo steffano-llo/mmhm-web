@@ -22,6 +22,12 @@ const obras = defineCollection({
     antesAlineado: z.boolean().default(true),
     /** Foto 'después' recortada para calzar con 'antes' en el comparador (si falta se usa la portada). */
     despuesComparar: image().optional(),
+    /** Galería: el orden de esta lista es el orden en que se muestran las fotos. */
+    fotos: z.array(z.object({
+      img: image(),
+      fase: z.enum(['antes', 'durante', 'despues', 'render']),
+      alt: z.string().optional(),
+    })).default([]),
     /** Nota de prensa enlazada (solo enlace y título, sin copiar fotos ni texto). */
     prensa: z.object({ t: z.string(), fuente: z.string(), fecha: z.string(), url: z.string().url() }).optional(),
     destacada: z.boolean().default(false),

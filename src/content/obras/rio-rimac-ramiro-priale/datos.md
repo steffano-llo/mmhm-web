@@ -79,4 +79,13 @@ recorrido:
     - Documentación final de obra
     - Acta de conformidad de la entidad
     out: Tramo entregado a la Municipalidad de Lima
+fotos:
+  - img: ./durante-01.jpg
+    fase: durante
+  - img: ./durante-02.jpg
+    fase: durante
+  - img: ./durante-03.jpg
+    fase: durante
+  - img: ./durante-04.jpg
+    fase: durante
 ---

@@ -92,7 +92,7 @@ if (feat?.data.antes && feat.data.portada) {
 
         <div class="grid" id="grid">
           {obras.map((o) => {
-            const n = fotosDe(o.id).length;
+            const n = fotosDe(o).length;
             return (
               <article class="card" data-id={o.id} data-tipo={o.data.tipo}>
                 <div class="media">

@@ -19,7 +19,7 @@ const servicios = serviciosDe(obra);
 const wa = waObra(obra);
 
 /* ---------- Fotos: mosaico + galería en modal ---------- */
-const fotos = fotosDe(obra.id);
+const fotos = fotosDe(obra);
 if (d.portada) {
   const i = fotos.findIndex((f) => f.img.src === d.portada!.src);
   if (i > 0) fotos.unshift(...fotos.splice(i, 1));
@@ -87,7 +87,7 @@ const nFotos = galeria.length;
       {mosaico.length === 0 && <div class="ob-ph" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" set:html={tipo.i} /></div>}
       {mosaico.map((f, i) => (
         <figure data-i={i} tabindex="0" role="button" aria-label={`Ampliar foto ${i + 1} de ${nFotos}`}>
-          <Picture src={f.img} formats={['webp']} fallbackFormat="webp" widths={i === 0 ? [800, 1300] : [480, 800]} sizes={i === 0 ? '(max-width:980px) 100vw, 40vw' : '(max-width:980px) 50vw, 20vw'} alt={`${d.titulo}: ${FASES[f.fase].toLowerCase()}`} fetchpriority={i === 0 ? 'high' : undefined} loading={i === 0 ? 'eager' : 'lazy'} />
+          <Picture src={f.img} formats={['webp']} fallbackFormat="webp" widths={i === 0 ? [800, 1300] : [480, 800]} sizes={i === 0 ? '(max-width:980px) 100vw, 40vw' : '(max-width:980px) 50vw, 20vw'} alt={f.alt ?? `${d.titulo}: ${FASES[f.fase].toLowerCase()}`} fetchpriority={i === 0 ? 'high' : undefined} loading={i === 0 ? 'eager' : 'lazy'} />
         </figure>
       ))}
       {nFotos > 1 && <button class="ob-all" id="galOpen" type="button"><Icon d={IC.grid} />Ver las {nFotos} fotos</button>}

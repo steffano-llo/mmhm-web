@@ -77,4 +77,9 @@ recorrido:
     - Conformidad de la Municipalidad de Lima
     out: Canales entregados
     foto: ./despues-01.jpg
+fotos:
+  - img: ./despues-01.jpg
+    fase: despues
+  - img: ./despues-02.jpg
+    fase: despues
 ---
