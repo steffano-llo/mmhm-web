@@ -180,3 +180,9 @@
   .ob-fig span{margin-top:0}
 }
 @media (max-width:359px){.ob-head h1{font-size:1.7rem}}
+/* Recorrido: títulos ilegibles a este tamaño; quedan para lectores de pantalla y en la lista de fases. El número va sobre su plataforma (--nx, --ny) */
+@media (max-width:520px){
+  .proc-lbl{left:var(--nx)!important;top:var(--ny)!important;width:auto!important;margin:-13px 0 0 -13px}
+  .proc-lbl b{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .proc-lbl .n{width:26px;height:26px;font-size:15px}
+}

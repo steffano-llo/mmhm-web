@@ -619,3 +619,5 @@ footer{overflow:hidden}
   .svc-body h2{overflow-wrap:anywhere}
 }
 @media (max-width:359px){.svc-body h2{font-size:1.5rem}}
+/* Gráfico de proceso y recorrido: a todo el ancho en móvil */
+@media (max-width:640px){.proc-fig{margin-inline:-24px}}

@@ -79,7 +79,7 @@ export async function recorridoDe(obra: CollectionEntry<'obras'>, wa: string) {
       const w = (x1 - x0) * g.K, cx = (x0 + x1) / 2;
       return { src: pzs[i], style: `left:${((cx - w / 2) / g.W) * 100}%;bottom:${((g.H - y1 - g.off) / g.H) * 100}%;width:${(w / g.W) * 100}%;--d:${0.25 + i * 0.16}s` };
     }),
-    lbl: g.lbl.map(([x, y, w], i) => `left:${(x / g.W) * 100}%;top:${(y / g.H) * 100}%;width:${(w / g.W) * 100}%;--d:${0.35 + i * 0.16}s`),
+    lbl: g.lbl.map(([x, y, w], i) => `left:${(x / g.W) * 100}%;top:${(y / g.H) * 100}%;width:${(w / g.W) * 100}%;--d:${0.35 + i * 0.16}s;--nx:${((g.plat[i][0] + g.plat[i][2]) / 2 / g.W) * 100}%;--ny:${(g.plat[i][3] / g.H) * 100}%`),
     data: { rutas: g.rutas, obra: d.titulo, wa, pz: pzs, fases },
   };
 }
