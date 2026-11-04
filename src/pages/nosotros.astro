@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import Clientes from '../components/Clientes.astro';
+import { Image } from 'astro:assets';
+import { imagenSitio } from '../lib/imagenes';
 
 const VALORES = [
   { t: 'Calidad', d: 'Cada proyecto se ejecuta bajo los más altos estándares de calidad y normas vigentes del sector construcción.' },
@@ -11,7 +13,7 @@ const VALORES = [
 ---
 <Base title="Nosotros | MM High Metrik Engineers" nav="nosotros" description="Conozca a MM High Metrik Engineers S.A.C.: empresa especializada en servicios integrales de construcción, remodelación y mantenimiento.">
   <div class="page-hero">
-    <img src="/assets/proyectos/rio-lurin.jpg" alt="">
+    <Image src={imagenSitio('proyectos/rio-lurin.jpg')} widths={[640, 960, 1280, 1400]} sizes="100vw" format="webp" alt="" fetchpriority="high" loading="eager" />
     <div class="wrap">
       <p class="crumbs"><a href="/">Inicio</a> / Nosotros</p>
       <h1>Nosotros</h1>
@@ -29,9 +31,9 @@ const VALORES = [
         <p class="lead" style="margin-top:14px">En MM HIGH METRIK ENGINEERS S.A.C. contamos con los recursos y la experiencia necesarios para cumplir con sus requerimientos de manera oportuna y eficaz.</p>
       </div>
       <div class="about-photos">
-        <img src="/assets/proyectos/rio-lurin.jpg" alt="Flota de excavadoras en la obra de descolmatación del Río Lurín" style="object-position:62% center" loading="lazy">
-        <figure class="duo"><img src="/assets/oficina.jpg" alt="Recepción de la oficina de MM High Metrik en San Isidro" loading="lazy"></figure>
-        <figure class="duo"><img src="/assets/proyectos/rio-rimac-ramiro-priale.jpg" alt="Excavadoras trabajando de noche en el cauce del Río Rímac" loading="lazy"></figure>
+        <Image src={imagenSitio('proyectos/rio-lurin.jpg')} widths={[480, 800, 1200]} sizes="(max-width:1000px) 56vw, 300px" format="webp" alt="Flota de excavadoras en la obra de descolmatación del Río Lurín" style="object-position:62% center" loading="lazy" />
+        <figure class="duo"><Image src={imagenSitio('oficina.jpg')} format="webp" alt="Recepción de la oficina de MM High Metrik en San Isidro" loading="lazy" /></figure>
+        <figure class="duo"><Image src={imagenSitio('proyectos/rio-rimac-ramiro-priale.jpg')} widths={[320, 480, 800]} sizes="(max-width:1000px) 44vw, 240px" format="webp" alt="Excavadoras trabajando de noche en el cauce del Río Rímac" loading="lazy" /></figure>
       </div>
     </div>
   </section>

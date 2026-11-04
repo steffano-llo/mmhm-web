@@ -2,10 +2,11 @@
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import Clientes from '../components/Clientes.astro';
-import { Picture, getImage } from 'astro:assets';
+import { Image, Picture, getImage } from 'astro:assets';
 import { IC } from '../lib/icons';
 import { SERVICIOS, TIPOS, sico, nn, BROCHURE, MAX_OBRAS_FRANJA } from '../lib/site';
 import { getObras, urlObra, waObra, serviciosDe } from '../lib/obras';
+import { imagenSitio } from '../lib/imagenes';
 
 const obras = await getObras();
 const byId = Object.fromEntries(obras.map((o) => [o.id, o]));
@@ -60,9 +61,9 @@ const og = caso?.data.portada ? (await getImage({ src: caso.data.portada, width:
         <a class="btn btn-line" href="/nosotros/" style="margin-top:26px">Conocer más</a>
       </div>
       <div class="about-photos">
-        <img src="/assets/proyectos/rio-lurin.jpg" alt="Flota de excavadoras en la obra de descolmatación del Río Lurín" style="object-position:62% center" loading="lazy">
-        <figure class="duo"><img src="/assets/oficina.jpg" alt="Recepción de la oficina de MM High Metrik en San Isidro" loading="lazy"></figure>
-        <figure class="duo"><img src="/assets/proyectos/rio-rimac-ramiro-priale.jpg" alt="Excavadoras trabajando de noche en el cauce del Río Rímac" loading="lazy"></figure>
+        <Image src={imagenSitio('proyectos/rio-lurin.jpg')} widths={[480, 800, 1200]} sizes="(max-width:1000px) 56vw, 300px" format="webp" alt="Flota de excavadoras en la obra de descolmatación del Río Lurín" style="object-position:62% center" loading="lazy" />
+        <figure class="duo"><Image src={imagenSitio('oficina.jpg')} format="webp" alt="Recepción de la oficina de MM High Metrik en San Isidro" loading="lazy" /></figure>
+        <figure class="duo"><Image src={imagenSitio('proyectos/rio-rimac-ramiro-priale.jpg')} widths={[320, 480, 800]} sizes="(max-width:1000px) 44vw, 240px" format="webp" alt="Excavadoras trabajando de noche en el cauce del Río Rímac" loading="lazy" /></figure>
       </div>
     </div>
   </section>
@@ -121,7 +122,7 @@ const og = caso?.data.portada ? (await getImage({ src: caso.data.portada, width:
         <div class="svc-cards" id="svcTrack">
           {SERVICIOS.map((s, i) => (
             <a class="svc-card" href={`/servicios/#servicio-${s.id}`}>
-              <span class="bg" aria-hidden="true"><img src={s.img} alt="" loading="lazy"></span>
+              <span class="bg" aria-hidden="true"><Image src={imagenSitio(s.img)} widths={[320, 480, 640]} sizes="(max-width:640px) 84vw, (max-width:1000px) 50vw, 340px" format="webp" alt="" loading="lazy" /></span>
               <span class="n">{nn(i)}</span><Fragment set:html={sico(s.ic)} /><h3>{s.t}</h3><p>{s.c}</p>
             </a>
           ))}

@@ -1,14 +1,16 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
+import { Image } from 'astro:assets';
 import { IC } from '../../lib/icons';
 import { SERVICIOS, FAMILIAS, nn } from '../../lib/site';
 import { getObras, urlObra, obrasDeServicio } from '../../lib/obras';
+import { imagenSitio } from '../../lib/imagenes';
 const obras = await getObras();
 ---
 <Base title="Servicios | MM High Metrik Engineers" nav="servicios" description={`${SERVICIOS.length} servicios de construcción: ${SERVICIOS.map((s) => s.sh.toLowerCase()).join(", ")}.`}>
   <div class="page-hero">
-    <img src="/assets/servicios/defensas-riberenas.jpg" alt="">
+    <Image src={imagenSitio('servicios/defensas-riberenas.jpg')} widths={[640, 960, 1280, 1600]} sizes="100vw" format="webp" alt="" fetchpriority="high" loading="eager" />
     <div class="wrap">
       <p class="crumbs"><a href="/">Inicio</a> / Servicios</p>
       <h1>Servicios</h1>
@@ -31,7 +33,7 @@ const obras = await getObras();
           <div class="svc-fam" id={`esp-${f}`}>
             {SERVICIOS.map((s, i) => s.f === f && (
               <article class="svc-item" id={`servicio-${s.id}`}>
-                <div class="svc-media"><img src={s.img} alt={s.t} loading="lazy"><span class="svc-num" aria-hidden="true">{nn(i)}</span></div>
+                <div class="svc-media"><Image src={imagenSitio(s.img)} widths={[480, 640, 840, 1200, 1600]} sizes="(max-width:1100px) 100vw, 820px" format="webp" alt={s.t} loading="lazy" /><span class="svc-num" aria-hidden="true">{nn(i)}</span></div>
                 <div class="svc-body">
                   <small>{FAMILIAS[s.f]}</small>
                   <h2>{s.t}</h2>
