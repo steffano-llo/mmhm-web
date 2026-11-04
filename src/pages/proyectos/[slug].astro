@@ -107,10 +107,10 @@ const nFotos = galeria.length;
         </a>
       )}
     </div>
-    {(d.hicimos || d.solucion) && (
+    {(d.hicimos?.length || d.solucion) && (
       <div>
         <h2>Lo que hicimos</h2>
-        {d.hicimos ? <ul class="ob-check">{d.hicimos.map((x) => <li>{x}</li>)}</ul> : <p>{d.solucion}</p>}
+        {d.hicimos?.length ? <ul class="ob-check">{d.hicimos.map((x) => <li>{x}</li>)}</ul> : <p>{d.solucion}</p>}
       </div>
     )}
   </section>
