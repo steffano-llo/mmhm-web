@@ -30,7 +30,6 @@ const og = new URL(image ?? '/assets/hero-excavadora.jpg', Astro.site).href;
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/logo-blanco.png">
 <link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-{leaflet && <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">}
 <slot name="head" />
 <script is:inline>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <script is:inline defer src="/_vercel/insights/script.js"></script>
@@ -41,7 +40,18 @@ const og = new URL(image ?? '/assets/hero-excavadora.jpg', Astro.site).href;
 <slot />
 </main>
 <Footer />
-{leaflet && <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>}
+{leaflet && <script is:inline>
+/* Carga Leaflet solo al necesitar un mapa. Su CSS va antes del propio, que sobrescribe algunos estilos. */
+window.cargarLeaflet=(function(){
+  var cdn='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min', p;
+  return function(){
+    return p||(p=Promise.all([
+      new Promise(function(ok,no){ var l=document.createElement('link'); l.rel='stylesheet'; l.href=cdn+'.css'; l.onload=ok; l.onerror=no; document.head.insertBefore(l,document.head.querySelector('link[rel=stylesheet],style')); }),
+      new Promise(function(ok,no){ var s=document.createElement('script'); s.src=cdn+'.js'; s.onload=ok; s.onerror=no; document.head.appendChild(s); })
+    ]));
+  };
+})();
+</script>}
 <script is:inline>
 (function(){
   var h=document.getElementById('header'), nav=document.getElementById('nav'), b=document.getElementById('menuBtn');
