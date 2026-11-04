@@ -9,8 +9,8 @@ import { getObras, urlObra, waObra, serviciosDe } from '../lib/obras';
 
 const obras = await getObras();
 const byId = Object.fromEntries(obras.map((o) => [o.id, o]));
-/* Obra grande: la marcada con destacadaInicio; si no hay, la primera con destacada. */
-const caso = obras.find((o) => o.data.destacadaInicio) ?? obras.find((o) => o.data.destacada);
+/* Obra grande: la marcada con destacadaInicio; si no hay, la primera con destacada y portada. Sin ninguna, se omite. */
+const caso = obras.find((o) => o.data.destacadaInicio) ?? obras.find((o) => o.data.destacada && o.data.portada);
 /* Textos escritos a mano para una obra concreta; cualquier otra usa sus propios datos. */
 const TEXTOS_CASO: Record<string, { alt: string; cota: string; servicio: string }> = {
   'costa-verde': { alt: 'Personal instalando geomallas en el acantilado de la Costa Verde, con el mar al fondo', cota: 'Acantilado de Miraflores', servicio: 'Geomallas y taludes' },
