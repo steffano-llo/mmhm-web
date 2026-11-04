@@ -72,7 +72,7 @@ const og = caso?.data.portada ? (await getImage({ src: caso.data.portada, width:
 
   {caso && textoCaso && (
     <section class="case" aria-labelledby="case-t" style="padding:0">
-      <div class="case-img">{caso.data.portada && <Picture src={caso.data.portada} formats={['webp']} fallbackFormat="webp" widths={[800, 1200, 1600]} sizes="(max-width:1000px) 100vw, 55vw" alt={textoCaso.alt} loading="lazy" />}</div>
+      <div class="case-img">{caso.data.portada && <Picture src={caso.data.portada} formats={['webp']} fallbackFormat="webp" widths={[480, 640, 800, 1200, 1600]} sizes="(max-width:1000px) 100vw, 55vw" alt={textoCaso.alt} loading="lazy" />}</div>
       <div class="case-body">
         <span class="kicker">Obra destacada</span>
         <h2 id="case-t">{caso.data.titulo}</h2>
@@ -100,7 +100,7 @@ const og = caso?.data.portada ? (await getImage({ src: caso.data.portada, width:
       <div class="strip">
         {strip.map((o) => (
           <a class="tile" href={urlObra(o)}>
-            <Picture src={o.data.portada!} formats={['webp']} fallbackFormat="webp" widths={[500, 800]} sizes="(max-width:640px) 78vw, 25vw" alt={o.data.titulo} loading="lazy" />
+            <Picture src={o.data.portada!} formats={['webp']} fallbackFormat="webp" widths={[320, 500, 640, 800]} sizes="(max-width:640px) 78vw, (max-width:1000px) 100vw, 25vw" alt={o.data.titulo} loading="lazy" />
             <div class="cap"><small>{TIPOS[o.data.tipo].n}</small><h3>{o.data.titulo}</h3></div>
           </a>
         ))}
