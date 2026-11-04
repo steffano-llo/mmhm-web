@@ -7,7 +7,11 @@ const OBRAS=JSON.parse(document.getElementById("obrasMin").textContent);
   const c=navigator.connection||{};
   const ahorro = c.saveData || /(^|-)2g$|3g/.test(c.effectiveType||"");
   if(matchMedia("(prefers-reduced-motion: reduce)").matches || ahorro){ v.remove(); return; }
-  const start=()=>{ v.src = v.canPlayType('video/mp4; codecs="avc1.640028"') ? "/assets/hero-video.mp4" : "/assets/hero-video.webm"; v.load();
+  const MP4="/assets/hero-video.mp4", WEBM="/assets/hero-video.webm";
+  const start=()=>{
+    /* WebM pesa menos; si no se soporta o falla al cargar, se usa MP4. */
+    v.src = v.canPlayType('video/webm; codecs="vp9"') ? WEBM : MP4; v.load();
+    if(v.getAttribute("src")===WEBM) v.addEventListener("error",()=>{ v.src=MP4; v.load(); v.play().catch(()=>{}); },{once:true});
     v.addEventListener("playing",()=>v.classList.add("on"),{once:true});
     v.play().catch(()=>{});
     if("IntersectionObserver" in window){
