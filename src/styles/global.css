@@ -613,3 +613,9 @@ footer{overflow:hidden}
   .clients .wrap{gap:18px}.clients ul{gap:14px 28px}.clients li{font-size:1.1rem}.clients img{height:40px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+/* Móvil: el contenido no puede ensanchar servicios ni la vista rápida */
+@media (max-width:767px){
+  .svc-layout,.svc-list,.svc-fam,.pd-box{grid-template-columns:minmax(0,1fr)}
+  .svc-body h2{overflow-wrap:anywhere}
+}
+@media (max-width:359px){.svc-body h2{font-size:1.5rem}}
