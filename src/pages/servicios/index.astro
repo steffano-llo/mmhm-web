@@ -82,6 +82,8 @@ const relacionadas = (id: string) => obrasDeServicio(obras, id);
       else if(r.bottom>n.bottom-m) d=r.bottom-n.bottom+m;
       if(d) idx.scrollTo({top:idx.scrollTop+d,behavior:quieto.matches?"auto":"smooth"});
     }
+    // Chrome no desplaza al enfocar un enlace parcialmente visible: en el índice horizontal quedaría cortado
+    idx.addEventListener("focusin",e=>{ if(movil.matches) e.target.scrollIntoView({block:"nearest",inline:"nearest",behavior:quieto.matches?"auto":"smooth"}); });
     idx.addEventListener("scroll",bordes,{passive:true});
     addEventListener("resize",bordes);
     // Recalcula si cambia la altura del índice o de sus ítems (p. ej. al cargar las fuentes)
