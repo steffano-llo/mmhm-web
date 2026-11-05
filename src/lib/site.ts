@@ -10,7 +10,7 @@ export const DIR_MAPA = 'Av. República de Colombia 625, San Isidro, Lima';
 export const HORARIO = 'Lunes a viernes, 8 a.m. a 6 p.m.';
 export const FACEBOOK = 'https://www.facebook.com/share/1EMLLRL683/?mibextid=wwXIfr';
 export const INSTAGRAM = 'https://www.instagram.com/mmhighmetrik.pe';
-export const BROCHURE = 'https://www.mmhighmetrik.com/brochure.pdf';
+export const BROCHURE = '/brochure.pdf';
 /** Máximo de obras en la franja "Más obras realizadas" del Inicio. */
 export const MAX_OBRAS_FRANJA = 4;
 

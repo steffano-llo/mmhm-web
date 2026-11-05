@@ -132,7 +132,7 @@ Una revocación de Access no basta por sí sola: mientras la política autorice 
 
 ## Pasos para T18
 
-No se ha configurado nada de esto. Hágalo en este orden.
+No se ha configurado nada de esto. Hágalo en este orden. El orden de toda la publicación está en `docs/DESPLIEGUE.md`.
 
 ### 1. Preparar el Worker
 

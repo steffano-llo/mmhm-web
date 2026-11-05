@@ -7,6 +7,8 @@ interface Props { title: string; description?: string; image?: string; nav?: str
 const { solidHeader = false, sinCanonical = false, title, description = 'MM High Metrik Engineers S.A.C. — servicios integrales de construcción, remodelación y mantenimiento en Lima y Puno.', image, nav, leaflet = false } = Astro.props;
 // Solo se indexa si el build recibe PUBLIC_INDEXABLE=true; cualquier otro valor deja noindex.
 const indexable = import.meta.env.PUBLIC_INDEXABLE === 'true';
+// Vercel define VERCEL=1 en su build; fuera de allí, el script de analítica daría 404.
+const enVercel = process.env.VERCEL === '1';
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const og = new URL(image ?? '/assets/hero-excavadora.jpg', Astro.site).href;
 ---
@@ -32,8 +34,8 @@ const og = new URL(image ?? '/assets/hero-excavadora.jpg', Astro.site).href;
 <link rel="icon" href="/assets/logo-blanco.png">
 <link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <slot name="head" />
-<script is:inline>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
-<script is:inline defer src="/_vercel/insights/script.js"></script>
+{enVercel && <script is:inline>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>}
+{enVercel && <script is:inline defer src="/_vercel/insights/script.js"></script>}
 </head>
 <body>
 <Header nav={nav} solid={solidHeader} />
