@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import react from '@astrojs/react';
+import sitemap from '@astrojs/sitemap';
 import keystatic from '@keystatic/astro';
 import { loadEnv } from 'vite';
 
@@ -19,7 +20,12 @@ export default defineConfig({
   output: 'static',
   // 'compile': sharp optimiza en el build, porque no corre dentro de Workers.
   adapter: cloudflare({ imageService: 'compile' }),
-  integrations: [react(), keystatic()],
+  integrations: [
+    react(),
+    keystatic(),
+    // El panel no va al sitemap: misma regla que RUTAS_PANEL en src/middleware.ts.
+    sitemap({ filter: (url) => !/^\/(api\/)?keystatic(\/|$)/i.test(new URL(url).pathname) }),
+  ],
   // astro:env/server es un módulo virtual: el prebundling de Vite no lo resuelve en modo dev.
   vite: { optimizeDeps: { exclude: ['@keystatic/astro/api'] } },
 });
