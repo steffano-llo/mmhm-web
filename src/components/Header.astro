@@ -9,7 +9,7 @@ const links = [
 ---
 <header class:list={["header", { solid }]} id="header" data-solid={solid ? "" : undefined}>
   <div class="wrap">
-    <a class="brand" href="/" aria-label="MM High Metrik Engineers S.A.C., inicio"><img src="/assets/mm-mark.png" alt="" width="160" height="78"><span class="brand-txt"><b>HIGH METRIK</b><small>ENGINEERS S.A.C.</small></span></a>
+    <a class="brand" href="/" aria-label="MM High Metrik Engineers S.A.C., inicio"><img src="/assets/mm-mark.png" alt="" width="160" height="78"><span class="brand-txt"><b>HIGH METRIK</b> <small>ENGINEERS S.A.C.</small></span></a>
     <button class="menu-btn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav"><Icon d={IC.menu} /></button>
     <nav class="nav" id="nav" aria-label="Principal">
       {links.map(([k, href, txt]) => <a href={href} class={nav === k ? 'active' : undefined} aria-current={nav === k ? 'page' : undefined}>{txt}</a>)}
