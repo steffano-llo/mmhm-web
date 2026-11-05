@@ -79,6 +79,7 @@ Datos de Keystatic Cloud tomados de <https://keystatic.com/docs/cloud> el 3 de n
 | `KEYSTATIC_SECRET` | **Secreto**, mínimo 32 caracteres. Cifra el token de renovación guardado en una cookie | Secreto del Worker | `.env` |
 | `PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` | Público, queda incluido en el sitio | Variable **del build** | `.env` |
 | `PUBLIC_INDEXABLE` | Público. Solo con el valor `true` los buscadores pueden indexar el sitio; si falta, las páginas llevan `noindex` | Variable **del build**. Actívela solo con el visto bueno de la empresa | No hace falta |
+| `SITE_URL` | Público. Dominio para canonical, Open Graph, sitemap y `robots.txt`. Si falta, se usa el dominio de revisión | Variable **del build**: `https://www.mmhighmetrik.com` | No hace falta |
 
 - **Nunca** los escriba en el repositorio, `wrangler.jsonc`, la documentación, correos o chats.
 - `.env` y `.dev.vars` están ignorados por git. `.env.example` solo contiene los nombres.

@@ -2,10 +2,16 @@ import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
+import { loadEnv } from 'vite';
+
+// Astro no carga .env antes de leer esta configuración.
+const { SITE_URL } = loadEnv(process.env.NODE_ENV ?? 'production', process.cwd(), '');
+// Dominio de revisión como respaldo; el dominio oficial se define con SITE_URL al publicar.
+const SITIO_RESPALDO = 'https://mmhm-p.vercel.app';
+const sitio = SITE_URL || SITIO_RESPALDO;
 
 export default defineConfig({
-  // Dominio de revisión; cambiar a https://www.mmhighmetrik.com al publicar en el dominio oficial
-  site: 'https://mmhm-p.vercel.app',
+  site: sitio,
   trailingSlash: 'ignore',
   build: { format: 'directory' },
   image: { responsiveStyles: false },
