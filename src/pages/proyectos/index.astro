@@ -55,7 +55,7 @@ if (feat?.data.antes && feat.data.portada) {
           <div><h2>Mapa de obras</h2><p class="lead" style="margin-top:10px">Seleccione un punto para ver la obra. El filtro de arriba también se aplica al mapa.</p></div>
           <div class="map-jump" role="group" aria-label="Ir a región"><button class="chip" data-jump="lima">Lima</button><button class="chip" data-jump="puno">Puno</button><button class="chip" data-jump="all">Todo el Perú</button></div>
         </div>
-        <div class="obras-map" id="obrasMap" aria-label="Mapa de ubicación de las obras"></div>
+        <div class="obras-map" id="obrasMap" role="region" aria-label="Mapa de ubicación de las obras"></div>
       </div>
       <div id="viewLista">
         {feat && (

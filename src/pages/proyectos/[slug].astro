@@ -171,7 +171,7 @@ const nFotos = galeria.length;
     {d.coords && (
       <div>
         <h2>Ubicación</h2>
-        <div class="obra-map" id="obraMap" data-lat={d.coords[0]} data-lng={d.coords[1]} data-t={d.titulo} aria-label={`Mapa de ubicación de ${d.titulo}`}></div>
+        <div class="obra-map" id="obraMap" role="region" data-lat={d.coords[0]} data-lng={d.coords[1]} data-t={d.titulo} aria-label={`Mapa de ubicación de ${d.titulo}`}></div>
         <div class="ob-locm"><span>{fmtLL(d.coords)}</span><a href={`/proyectos/?vista=mapa&obra=${obra.id}`}>Ver en el mapa de obras<Icon d={IC.arrow} /></a></div>
       </div>
     )}
