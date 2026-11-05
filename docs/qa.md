@@ -2,7 +2,7 @@
 
 Medido el 2026-11-05 en la rama `feat/t17-calidad`. Referencia: commit `f2f58e9`.
 
-**Resultado:** rendimiento, accesibilidad y SEO no empeoraron. Queda un fallo de contraste en los botones de WhatsApp, que espera una decisión sobre el color (ver [Pendiente](#pendiente)).
+**Resultado:** rendimiento, accesibilidad y SEO no empeoraron. Accesibilidad llega a 100 en las páginas medidas y axe no marca ninguna violación.
 
 ## Método
 
@@ -23,19 +23,20 @@ El rendimiento se compara con el "después" de T19, porque las cifras de T01 no 
 
 | Página | Modo | Rendimiento | LCP | Accesibilidad | SEO con `noindex` | SEO con `PUBLIC_INDEXABLE=true` |
 |---|---|---|---|---|---|---|
-| `/` | Móvil | 98 a 100 → 100 | 0,8 s | 97 → 97 | 66 → 69 | 100 |
+| `/` | Móvil | 98 a 100 → 100 | 0,8 s | 97 → 100 | 66 → 69 | 100 |
 | `/` | Escritorio | 100 → 100 | 0,2 s | 97 → 100 | 66 → 69 | 100 |
-| `/servicios/` | Móvil | 93 a 96 → 96 | 2,9 s | 94 → 96 | 66 → 69 | 100 |
-| `/servicios/` | Escritorio | 100 → 100 | 0,7 s | 98 → 100 | 66 → 69 | 100 |
-| `/proyectos/` | Móvil | 89 → 89 | 3,8 s | 95 → 97 | 66 → 69 | 100 |
+| `/servicios/` | Móvil | 93 a 96 → 96 | 2,9 s | 94 → 100 | 66 → 69 | 100 |
+| `/servicios/` | Escritorio | 100 → 100 | 0,8 s | 98 → 100 | 66 → 69 | 100 |
+| `/proyectos/` | Móvil | 89 → 89 | 3,8 s | 95 → 100 | 66 → 69 | 100 |
 | `/proyectos/` | Escritorio | 98 → 98 | 1,1 s | 99 → 100 | 66 → 69 | 100 |
-| `/proyectos/costa-verde/` | Móvil | 96 → 96 | 2,9 s | 91 → 96 | 66 → 69 | 100 |
-| `/proyectos/costa-verde/` | Escritorio | 100 → 100 | 0,6 s | 95 → 96 | 66 → 69 | 100 |
+| `/proyectos/costa-verde/` | Móvil | 96 → 95 a 96 | 2,9 s | 91 → 100 | 66 → 69 | 100 |
+| `/proyectos/costa-verde/` | Escritorio | 100 → 100 | 0,6 s | 95 → 100 | 66 → 69 | 100 |
 
-- **Accesibilidad:** el único fallo que queda es `color-contrast`, por los botones de WhatsApp.
+- **Accesibilidad:** ninguna auditoría falla.
 - **Antes de corregir:** hoy se midieron 95, 95, 94, 98, 95, 99, 91 y 91, en el orden de la tabla.
 - **Buenas prácticas:** 96 en todas las páginas. El único error de consola es el 404 de `/_vercel/insights/script.js`, que solo existe en Vercel.
 - **SEO con `noindex`:** el único fallo es `is-crawlable`, a propósito hasta T18.
+- **SEO con `PUBLIC_INDEXABLE=true`:** se midió antes del cambio de color de WhatsApp, que no afecta a estas auditorías.
 - **`/proyectos/` móvil:** es la cifra menos estable. Una corrida con `PUBLIC_INDEXABLE=true` dio rendimiento 82 y LCP 5,0 s; la otra dio 89 y 3,8 s, con el mismo peso de página.
 
 ## axe
@@ -48,8 +49,8 @@ Páginas: Inicio, Nosotros, Contacto, Servicios, Proyectos, Costa Verde (con rec
 | `label-content-name-mismatch` | Todas las páginas | 0 |
 | `aria-prohibited-attr` | Costa Verde | 0 |
 | `region` | Todas las páginas en 1280 px | 0 |
-| `color-contrast` | Antetítulo, etiqueta y WhatsApp | Solo WhatsApp |
-| **Total de elementos** | **89** | **11** |
+| `color-contrast` | Antetítulo, etiqueta y WhatsApp | 0 |
+| **Total de elementos** | **89** | **0** |
 
 axe no decide en todos los casos, por ejemplo con texto sobre imagen. Esos casos no se revisaron uno por uno.
 
@@ -63,6 +64,7 @@ axe no decide en todos los casos, por ejemplo con texto sobre imagen. Esos casos
 | Botón flotante de WhatsApp fuera de todo landmark | Dentro de un `aside` con nombre |
 | Antetítulo "Obra destacada" del Inicio (3,36:1) | `--blue-2`, igual que en las secciones oscuras (4,79:1). No cambia ningún color de marca. |
 | Etiqueta azul de tipo en la ficha (4,40:1) | Fondo de `#E7EEFF` a `#EEF3FF` (4,61:1). Es un tinte propio de la etiqueta, no una variable de marca. |
+| Blanco sobre el verde de WhatsApp (2,86:1) | Aprobado por el usuario: `--wa` de `#1FAF5A` a `#158043` (5,00:1) y hover de `.btn-wa` de `#18964C` a `#116A37` (6,69:1). Afecta a `.btn-wa`, `.mbar .m-wa` y `.wa-float`. |
 | Índice de servicios en móvil: el enlace enfocado quedaba cortado | Se desplaza hasta mostrarlo completo y respeta el movimiento reducido |
 | "Obras relacionadas" vacío | El bloque se omite. Hoy solo afecta a `instituciones-educativas`; los otros 13 servicios lo conservan. |
 
@@ -97,7 +99,6 @@ No hay ninguno visible en el sitio: ni en `src/` ni en `public/` ni en el HTML d
 
 ## Pendiente
 
-1. **Contraste de WhatsApp (decisión de color).** Blanco sobre `--wa` (`#1FAF5A`) da 2,86:1 y se necesita 4,5:1. Afecta a `.btn-wa` y `.mbar .m-wa`. Cambiarlo toca un color de marca, así que espera aprobación.
-2. **Recorridos sin validar.** Los 8 borradores de `docs/recorridos-por-validar.md` están publicados sin marcador visible y la empresa debe confirmarlos antes de producción.
-3. **Script de Vercel (T18).** `Base.astro` carga `/_vercel/insights/script.js` en todas las páginas. En Cloudflare daría 404 y el error de consola seguiría.
-4. **Brochure y enlaces externos (T18).** `BROCHURE` apunta al dominio antiguo, como ya indica T18. Conviene revisar los enlaces externos una vez publicado.
+1. **Recorridos sin validar.** Los 8 borradores de `docs/recorridos-por-validar.md` están publicados sin marcador visible y la empresa debe confirmarlos antes de producción.
+2. **Script de Vercel (T18).** `Base.astro` carga `/_vercel/insights/script.js` en todas las páginas. En Cloudflare daría 404 y el error de consola seguiría.
+3. **Brochure y enlaces externos (T18).** `BROCHURE` apunta al dominio antiguo, como ya indica T18. Conviene revisar los enlaces externos una vez publicado.
