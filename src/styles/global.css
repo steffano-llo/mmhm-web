@@ -350,6 +350,7 @@ footer{background:#081427;color:#AEBBD0;padding:48px 0 0;font-size:.94rem}
 .case-img{position:relative;overflow:hidden}
 .case-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .case-body{padding:84px 64px;display:flex;flex-direction:column;justify-content:center;max-width:620px}
+.case-body .kicker{color:var(--blue-2)}
 .case-body h2{font-size:clamp(2.4rem,5vw,4rem);font-stretch:125%}
 .case-body > p{color:#C8D2E2;margin-top:18px;max-width:46ch}
 .case .ficha{border-color:rgba(255,255,255,.18);margin-top:30px;font-size:.93rem;gap:8px 18px}

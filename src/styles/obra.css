@@ -7,7 +7,7 @@
 .ob-head h1{font-size:clamp(2rem,4vw,3.3rem);font-stretch:125%;letter-spacing:-.035em;margin-top:10px}
 .ob-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .ob-tag{font-size:.8rem;font-weight:700;padding:5px 10px;border-radius:30px;background:var(--paper);color:var(--ink)}
-.ob-tag.b{background:#E7EEFF;color:var(--blue)}
+.ob-tag.b{background:#EEF3FF;color:var(--blue)}
 .ob-figs{display:grid;grid-template-columns:repeat(var(--n,3),1fr);margin-top:24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .ob-fig{padding:16px 14px 14px 0}
 .ob-fig+.ob-fig{border-left:1px solid var(--line);padding-left:14px}
