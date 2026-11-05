@@ -23,7 +23,7 @@ const obras = await getObras();
       <nav class="svc-index" id="svcIndex" aria-label="Índice de servicios">
         {Object.entries(FAMILIAS).map(([f, n]) => (
           <>
-            <h4>{n}</h4>
+            <h2>{n}</h2>
             {SERVICIOS.map((s, i) => s.f === f && <a href={`#servicio-${s.id}`} data-s={s.id}><span>{nn(i)}</span><b class="lg">{s.t}</b><b class="sm">{s.sh}</b></a>)}
           </>
         ))}
@@ -39,8 +39,8 @@ const obras = await getObras();
                   <h2>{s.t}</h2>
                   <p>{s.d}</p>
                   <div class="svc-cols">
-                    <div><h4>Alcance</h4><ul class="checks">{s.a.map((x) => <li>{x}</li>)}</ul></div>
-                    <div><h4>Obras relacionadas</h4><div class="chips-rel">
+                    <div><h3>Alcance</h3><ul class="checks">{s.a.map((x) => <li>{x}</li>)}</ul></div>
+                    <div><h3>Obras relacionadas</h3><div class="chips-rel">
                       {obrasDeServicio(obras, s.id).map((o) => <a href={urlObra(o)}><Icon d={IC.pin} w={2.2} />{o.data.titulo}</a>)}
                     </div></div>
                   </div>
