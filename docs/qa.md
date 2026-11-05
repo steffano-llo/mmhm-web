@@ -102,3 +102,4 @@ No hay ninguno visible en el sitio: ni en `src/` ni en `public/` ni en el HTML d
 1. **Recorridos sin validar.** Los 8 borradores de `docs/recorridos-por-validar.md` están publicados sin marcador visible y la empresa debe confirmarlos antes de producción.
 2. **Script de Vercel (T18).** `Base.astro` carga `/_vercel/insights/script.js` en todas las páginas. En Cloudflare daría 404 y el error de consola seguiría.
 3. **Brochure y enlaces externos (T18).** `BROCHURE` apunta al dominio antiguo, como ya indica T18. Conviene revisar los enlaces externos una vez publicado.
+4. **Logos de clientes (T03b).** Logos de Osinergmin, Prolima y Surco son PNG incrustados en SVG; pedir las versiones vectoriales a la empresa. Logo de Lima: SVG de 253 KB sin viewBox.
