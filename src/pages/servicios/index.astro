@@ -7,6 +7,7 @@ import { SERVICIOS, FAMILIAS, nn } from '../../lib/site';
 import { getObras, urlObra, obrasDeServicio } from '../../lib/obras';
 import { imagenSitio } from '../../lib/imagenes';
 const obras = await getObras();
+const relacionadas = (id: string) => obrasDeServicio(obras, id);
 ---
 <Base title="Servicios | MM High Metrik Engineers" nav="servicios" description={`${SERVICIOS.length} servicios de construcción: ${SERVICIOS.map((s) => s.sh.toLowerCase()).join(", ")}.`}>
   <div class="page-hero">
@@ -40,9 +41,11 @@ const obras = await getObras();
                   <p>{s.d}</p>
                   <div class="svc-cols">
                     <div><h3>Alcance</h3><ul class="checks">{s.a.map((x) => <li>{x}</li>)}</ul></div>
-                    <div><h3>Obras relacionadas</h3><div class="chips-rel">
-                      {obrasDeServicio(obras, s.id).map((o) => <a href={urlObra(o)}><Icon d={IC.pin} w={2.2} />{o.data.titulo}</a>)}
-                    </div></div>
+                    {relacionadas(s.id).length > 0 && (
+                      <div><h3>Obras relacionadas</h3><div class="chips-rel">
+                        {relacionadas(s.id).map((o) => <a href={urlObra(o)}><Icon d={IC.pin} w={2.2} />{o.data.titulo}</a>)}
+                      </div></div>
+                    )}
                   </div>
                   <a class="btn btn-primary" href={`/contacto/?servicio=${encodeURIComponent(s.t)}`}>Solicitar información</a>
                 </div>
