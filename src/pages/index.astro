@@ -4,7 +4,7 @@ import Icon from '../components/Icon.astro';
 import Clientes from '../components/Clientes.astro';
 import { Image, Picture, getImage } from 'astro:assets';
 import { IC } from '../lib/icons';
-import { SERVICIOS, TIPOS, sico, nn, BROCHURE, MAX_OBRAS_FRANJA } from '../lib/site';
+import { SERVICIOS, TIPOS, sico, nn, BROCHURE, MAX_OBRAS_FRANJA, EMPRESA, DIRECCION, DISTRITO, TEL, MAIL, FACEBOOK, INSTAGRAM } from '../lib/site';
 import { getObras, urlObra, waObra, serviciosDe } from '../lib/obras';
 import { imagenSitio } from '../lib/imagenes';
 
@@ -28,10 +28,22 @@ const obrasMin = Object.fromEntries(await Promise.all(ETAPA_OBRAS.filter((id) =>
     img: o.data.portada ? (await getImage({ src: o.data.portada, width: 800, format: 'webp' })).src : null }];
 })));
 const og = caso?.data.portada ? (await getImage({ src: caso.data.portada, width: 1200, height: 630, fit: 'cover', format: 'jpg' })).src : undefined;
+// Solo datos de site.ts: no agregar otros sin confirmarlos con la empresa.
+const organizacion = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: EMPRESA,
+  url: Astro.site?.href,
+  telephone: TEL,
+  email: MAIL,
+  address: { '@type': 'PostalAddress', streetAddress: DIRECCION, addressLocality: DISTRITO },
+  sameAs: [FACEBOOK, INSTAGRAM],
+};
 ---
 <Base title="MM High Metrik Engineers | Construcción, remodelación y mantenimiento" nav="inicio" image={og}>
   {/* Enlaces antiguos: /#contacto y /?servicio=...#contacto */}
   <script is:inline slot="head">if(location.hash==="#contacto")location.replace("/contacto/"+location.search);</script>
+  <script is:inline slot="head" type="application/ld+json" set:html={JSON.stringify(organizacion)}></script>
   <section class="hero" id="inicio" style="padding:0">
     <img class="hero-img" src="/assets/hero-excavadora.jpg" alt="Excavadora trabajando sobre enrocado al atardecer" fetchpriority="high">
     <video class="hero-video" id="heroVideo" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>

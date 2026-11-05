@@ -1,4 +1,5 @@
 // Si cambia el contacto o la dirección, actualizar también a mano src/content/legal/privacidad.md y terminos.md.
+export const EMPRESA = 'MM High Metrik Engineers S.A.C.';
 export const WA = '51955137140';
 export const TEL = '+51955137140';
 export const TEL_TXT = '(+51) 955 137 140';
