@@ -68,4 +68,5 @@ recorrido:
         - Entrega llave en mano
       out: Naves entregadas llave en mano
       foto: ./despues-01.jpg
+destacadaListado: true
 ---
