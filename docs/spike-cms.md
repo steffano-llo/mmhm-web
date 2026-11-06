@@ -92,7 +92,7 @@ Verificado con `gh api` (solo GET) sobre `repos/steffano-llo/mmhm-web`.
 | `28bd1de` | `steffano-llo` | `src/content/obras/rio-lurin/datos.md` | +20 -10 | Agrega "Probando." al `resumen` y normaliza todo el YAML |
 | `59bdf23` | `steffano-llo` | `src/content/obras/rio-lurin/datos.md` | +2 -2 | Pasa "Probando." al `titulo` y restaura el `resumen` |
 
-- **Rama:** `spike/t12-guardado`, 2 commits delante de `main` y 0 detrás, base `59692ac`. Se creó desde `main` del fork, que sigue en el prototipo: no contiene T01 a T08.
+- **Rama:** `spike/t12-guardado`, 2 commits delante de `main` y 0 detrás, base `59692ac`. Se creó desde `main` del fork, que sigue en el prototipo: no contiene T01 a T08. (Histórico: hoy `main` ya incluye esas tareas.)
 - **Commit:** lo firma GitHub (`web-flow`, verificado), con el usuario como autor. El mensaje es genérico: `Update src/content/obras/rio-lurin/datos`. No dice qué cambió, algo a tener en cuenta para el historial que leerá personal no técnico.
 - **Saltos de línea:** LF en ambas versiones (0 CRLF: 15 líneas en `main`, 25 en la rama).
 - **Campos perdidos:** ninguno. `portada` sigue en `./durante-01.jpg` y las dos fotos conservan tamaño y hash de blob.

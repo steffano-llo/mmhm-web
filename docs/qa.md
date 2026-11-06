@@ -121,7 +121,7 @@ Qué queda y por qué no expone el sitio público:
 ## Pendiente
 
 1. **Recorridos sin validar.** Los 8 borradores de `docs/recorridos-por-validar.md` están publicados sin marcador visible y la empresa debe confirmarlos antes de producción.
-2. **Script de Vercel (T18).** `Base.astro` carga `/_vercel/insights/script.js` en todas las páginas. En Cloudflare daría 404 y el error de consola seguiría.
-3. **Brochure y enlaces externos (T18).** `BROCHURE` apunta al dominio antiguo, como ya indica T18. Conviene revisar los enlaces externos una vez publicado.
+2. **Script de Vercel (T18).** Ya resuelto en T18: `Base.astro` solo carga `/_vercel/insights/script.js` cuando el build corre en Vercel (`VERCEL=1`). Antes se cargaba en todas las páginas y en Cloudflare daba 404.
+3. **Brochure y enlaces externos (T18).** El brochure ya está resuelto en T18: `BROCHURE` apunta a `/brochure.pdf`, servido desde `public/`. Sigue pendiente revisar los enlaces externos una vez publicado.
 4. **Logos de clientes (T03b).** Logos de Osinergmin, Prolima y Surco son PNG incrustados en SVG; pedir las versiones vectoriales a la empresa. Logo de Lima: SVG de 253 KB sin viewBox.
 5. **Migrar a Astro 7 (tarea futura).** Es la única forma de cerrar el aviso crítico de `astro` y casi todos los demás. Requiere Astro 7 y `@astrojs/cloudflare` 14, y comprobar `@keystatic/astro` y la función `imagen()` de `keystatic.config.ts`. Al ser un cambio de versión mayor, va en una tarea propia y no en esta revisión. Mientras tanto, el riesgo es bajo porque el sitio público es estático.

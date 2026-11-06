@@ -285,7 +285,7 @@ Antes del paso 8:
 - [ ] Todas las decisiones de la tabla inicial están resueltas.
 - [ ] `npm run build:panel` termina sin errores con la versión de `main`.
 - [ ] El paso 7 está completo, en especial el login detrás de Access y la reconstrucción.
-- [ ] `npm audit` está revisado. En T12 dio 13 avisos, 1 crítico en `astro`. [PENDIENTE: decidir si se actualiza antes de publicar]
+- [x] `npm audit` está revisado (ver `docs/qa.md`, sección «Dependencias»). En T12 dio 13 avisos, 1 crítico en `astro` (histórico). Tras la revisión quedan 12, con exposición baja para el sitio público; la migración a Astro 7 queda como tarea futura.
 - [ ] `imagen()` de `keystatic.config.ts` se volvió a probar si Keystatic cambió de versión.
 - [ ] Hay copia del DNS antiguo y alguien tiene acceso al registrador durante el cambio.
 - [ ] `public/_redirects` tiene la lista de la empresa.

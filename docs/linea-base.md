@@ -22,7 +22,7 @@ Páginas generadas: `/`, `/servicios/`, `/proyectos/` y 14 fichas en `/proyectos
 
 ## Lighthouse
 
-Medición sobre `npm run preview` (build de producción, `http://localhost:4321`), con `npx lighthouse` 13.6.0 y Chrome en modo headless. Móvil usa la configuración por defecto (con limitación simulada de red y CPU); escritorio usa `--preset=desktop`. Una sola corrida por página: el rendimiento puede variar unos puntos entre corridas.
+Medición sobre `npm run preview` (build de producción, `http://localhost:4321`), con `npx lighthouse` 13.6.0 y Chrome en modo headless. Móvil usa la configuración por defecto (con limitación simulada de red y CPU); escritorio usa `--preset=desktop`. Una sola corrida por página: el rendimiento puede variar unos puntos entre corridas. (Histórico: `npm run preview` dejó de funcionar en T12; el método actual está en «Método», más abajo.)
 
 | Página | Modo | Rendimiento | Accesibilidad | Buenas prácticas | SEO | LCP | CLS | TBT |
 |---|---|---|---|---|---|---|---|---|
