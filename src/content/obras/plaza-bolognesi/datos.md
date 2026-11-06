@@ -111,4 +111,5 @@ recorrido:
       out: Plaza entregada a PROLIMA
       foto: ./despues-01.jpg
 destacada: true
+destacadaListado: true
 ---
