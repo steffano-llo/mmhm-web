@@ -61,12 +61,12 @@ recorrido:
       foto: ./despues-03.jpg
     - t: Entrega
       s: Llave en mano
-      lead: >-
-        Entregamos las naves llave en mano, como cierre del desarrollo integral.
+      lead: Entregamos las naves llave en mano, como cierre del desarrollo integral.
       inc:
         - Diseño y construcción concluidos
         - Naves industriales y logísticas terminadas
         - Entrega llave en mano
       out: Naves entregadas llave en mano
       foto: ./despues-01.jpg
+destacadaListado: true
 ---
