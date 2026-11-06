@@ -104,5 +104,4 @@ recorrido:
         - Recepción de la obra
       out: Servicios ampliados para el distrito
       foto: ./despues-02.jpg
-destacadaListado: true
 ---
