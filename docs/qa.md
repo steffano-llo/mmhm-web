@@ -97,9 +97,31 @@ No hay ninguno visible en el sitio: ni en `src/` ni en `public/` ni en el HTML d
 - **Formulario de contacto:** no se probó su envío a WhatsApp.
 - **Lectores de pantalla y dispositivos reales:** no se usaron.
 
+## Dependencias (`npm audit`)
+
+Revisión del aviso que quedó abierto en T12 (`docs/spike-cms.md`). `npm audit --omit=dev` da lo mismo que `npm audit` porque `package.json` no tiene `devDependencies`.
+
+- **Antes:** 14 avisos (1 crítico, 7 altos, 5 moderados, 1 bajo).
+- **Cambio:** `@astrojs/sitemap` de 3.7.0 a 3.7.4, `vite` de 6.4.4 a 6.4.5 y `undici` (lo trae `astro` vía `unifont`) de 8.12.1 a 8.12.4. Ninguno es un cambio de versión mayor. Commit `4676fcc`.
+- **Después:** 12 avisos (1 crítico, 8 altos, 2 moderados, 1 bajo). Salen `@astrojs/sitemap` y `vite`. Que haya un aviso alto más no se debe al cambio: npm ahora califica `wrangler` 4.59.2 como alto, y `@astrojs/cloudflare` lo hereda. Ninguna de las dos versiones cambió.
+- **Verificación:** `npm run build` y `npm run build:panel` terminan sin errores. El HTML, `sitemap-*.xml`, `robots.txt` y el contenido de `_routes.json` son idénticos a los de antes. En `_worker.js` solo cambian los nombres con hash y la clave aleatoria de Astro, igual que entre dos builds seguidos sin ningún cambio. Con `wrangler dev --local`: `/` y `/proyectos/` dan 200, `/keystatic` da 200 con `X-Robots-Tag: noindex, nofollow`, el login redirige a GitHub y una ruta inexistente da 404.
+
+Qué queda y por qué no expone el sitio público:
+
+| Aviso | Dónde corre | Exposición |
+|---|---|---|
+| `astro` 5.18.2 (crítico) | Build y Worker del panel | Baja. Casi todos los fallos exigen funciones que no usamos (`define:vars`, View Transitions, server islands, MDX). El único plausible es el SSRF por la cabecera Host (GHSA-2pvr-wf23-7pc7), que solo aplica a las rutas del panel. |
+| `zod`, `zod-to-ts` | Build, a través de `astro` | No. Solo validan los `datos.md` propios. |
+| `sharp` 0.34.5 | Build (`imageService: 'compile'`) | Baja. Solo procesa imágenes propias o subidas desde el panel. Para 0.35 hace falta salir del rango que exige Astro 5. |
+| `wrangler`, `miniflare`, `undici` 7, `ws` | Herramientas locales y despliegue | No. Cloudflare no ejecuta el Worker con miniflare. Las versiones vienen fijadas por el adaptador 12. |
+| `@astrojs/cloudflare` 12.6.13 | Worker | No aplica: el SSRF es del endpoint de imágenes, que no existe con `imageService: 'compile'`. |
+| `minimatch` (vía `@keystatic/core`) | Worker del panel | No. Los patrones vienen de `keystatic.config.ts`, no del usuario. |
+| `esbuild` | `astro dev` en Windows | Solo local. |
+
 ## Pendiente
 
 1. **Recorridos sin validar.** Los 8 borradores de `docs/recorridos-por-validar.md` están publicados sin marcador visible y la empresa debe confirmarlos antes de producción.
 2. **Script de Vercel (T18).** `Base.astro` carga `/_vercel/insights/script.js` en todas las páginas. En Cloudflare daría 404 y el error de consola seguiría.
 3. **Brochure y enlaces externos (T18).** `BROCHURE` apunta al dominio antiguo, como ya indica T18. Conviene revisar los enlaces externos una vez publicado.
 4. **Logos de clientes (T03b).** Logos de Osinergmin, Prolima y Surco son PNG incrustados en SVG; pedir las versiones vectoriales a la empresa. Logo de Lima: SVG de 253 KB sin viewBox.
+5. **Migrar a Astro 7 (tarea futura).** Es la única forma de cerrar el aviso crítico de `astro` y casi todos los demás. Requiere Astro 7 y `@astrojs/cloudflare` 14, y comprobar `@keystatic/astro` y la función `imagen()` de `keystatic.config.ts`. Al ser un cambio de versión mayor, va en una tarea propia y no en esta revisión. Mientras tanto, el riesgo es bajo porque el sitio público es estático.
