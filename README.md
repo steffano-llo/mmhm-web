@@ -15,6 +15,13 @@ Cada obra es una carpeta en `src/content/obras/<obra>/`:
   ```
 - `antesAlineado: true` solo si la foto del antes tiene el mismo encuadre que la portada (activa el deslizador);
   si no, se muestra la comparación lado a lado.
+- `servicios`: ids de los servicios aplicados (ver `SERVICIOS` en `src/lib/site.ts`). Con ellos se calculan
+  las "Obras relacionadas" de cada servicio.
+- `destacada: true`: la obra aparece en la franja "Más obras" del Inicio (requiere portada; máximo
+  `MAX_OBRAS_FRANJA` de `site.ts`).
+- `destacadaInicio: true`: obra grande del Inicio. `destacadaListado: true`: obra principal de `/proyectos`.
+  Cada una solo puede estar en una obra; si se repite, el build falla.
+- `borrador: true`: oculta la obra en producción (en `npm run dev` sigue visible).
 
 ## Panel de obras (Keystatic)
 - Con `npm run dev`, el panel está en http://localhost:4321/keystatic y guarda directamente en los archivos locales.
@@ -28,6 +35,11 @@ Cada obra es una carpeta en `src/content/obras/<obra>/`:
 npm install      # una vez
 npm run dev      # vista local en http://localhost:4321
 npm run build    # genera la carpeta dist/ lista para publicar
+
+`npm run preview` no funciona con el adaptador de Cloudflare: solo muestra un aviso. Para medir el sitio
+compilado, siga el método de [docs/linea-base.md](docs/linea-base.md).
+
+Más documentación (despliegue, panel, accesos, calidad) en [docs/](docs/).
 
 ## Página de obra (rediseño)
 

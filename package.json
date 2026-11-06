@@ -8,7 +8,7 @@
     "dev:panel": "astro dev --mode github --port 4321 --strictPort",
     "build": "astro build",
     "build:panel": "astro build --mode github",
-    "preview": "astro preview"
+    "preview": "node -e \"console.error('npm run preview no funciona con el adaptador de Cloudflare. Para medir, siga el metodo de docs/linea-base.md.');process.exit(1)\""
   },
   "dependencies": {
     "@astrojs/cloudflare": "12.6.13",
