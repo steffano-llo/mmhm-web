@@ -17,7 +17,7 @@ const ESPECIALIDADES = [
 ];
 
 const ETAPAS = [
-  { n: '01', t: 'Planificación', d: 'Expediente, presupuesto y cronograma.', e: 'Plan de trabajo y cronograma', img: 'planificacion', cap: 'Topografía y replanteo', alt: 'Topógrafo con estación total en la ribera del río Rímac', pos: '25% center' },
+  { n: '01', t: 'Planificación', d: 'Expediente, presupuesto y cronograma.', e: 'Plan de trabajo y cronograma', img: 'planificacion', cap: 'Topografía y replanteo', alt: 'Topógrafo con estación total en la ribera del río Rímac', pos: '8% center' },
   { n: '02', t: 'Ejecución', d: 'Personal y equipo propios en obra.', e: 'Cuaderno de obra al día', img: 'ejecucion', cap: 'Adoquinado · Plaza Dos de Mayo', alt: 'Cuadrilla colocando adoquines en la Plaza Dos de Mayo', pos: 'center' },
   { n: '03', t: 'Control', d: 'Avance, valorizaciones e informes.', e: 'Valorizaciones e informes mensuales', img: 'control', cap: 'Pruebas de tablero eléctrico', alt: 'Técnico de MM High Metrik revisando un tablero eléctrico', pos: 'center 35%' },
   { n: '04', t: 'Entrega', d: 'Recepción de obra, documentación final y liquidación.', e: 'Acta de recepción y dossier', img: 'entrega', cap: 'Plaza Dos de Mayo terminada', alt: 'Plaza Dos de Mayo con el adoquinado terminado', pos: 'center' },
@@ -65,7 +65,7 @@ const obras = (await Promise.all(DESTACADAS.map((id) => getEntry('obras', id))))
           </ul>
         </div>
         <div class="ed-collage rv">
-          <figure class="ph"><Image src={foto('equipo-obra')} widths={[480, 800, 1200]} sizes="(max-width:960px) 56vw, 420px" format="webp" alt="Ingenieros de MM High Metrik supervisando en obra" style="object-position:62% 30%" loading="lazy" /><figcaption>Equipo en obra</figcaption></figure>
+          <figure class="ph ph-wide"><Image src={foto('equipo-obra')} widths={[640, 960, 1400]} sizes="(max-width:960px) 92vw, 680px" format="webp" alt="Ingenieros de MM High Metrik supervisando en obra" style="object-position:center 30%" loading="lazy" /><figcaption>Equipo en obra</figcaption></figure>
           <figure class="ph"><Image src={foto('oficina')} widths={[400, 640, 900]} sizes="(max-width:960px) 44vw, 320px" format="webp" alt="Recepción de la oficina de MM High Metrik en San Isidro" loading="lazy" /><figcaption>Oficina · San Isidro</figcaption></figure>
           <figure class="ph"><Image src={foto('charla-seguridad')} widths={[400, 640, 900]} sizes="(max-width:960px) 44vw, 320px" format="webp" alt="Charla de seguridad del equipo antes de iniciar la jornada" loading="lazy" /><figcaption>Charla de seguridad</figcaption></figure>
         </div>
@@ -73,12 +73,24 @@ const obras = (await Promise.all(DESTACADAS.map((id) => getEntry('obras', id))))
     </section>
 
     <!-- Visión y misión -->
-    <section class="ed-sec ed-mvsec">
-      <div class="wrap">
-        <div class="ed-mv">
-          <article class="rv"><p class="ed-k">Nuestra visión</p><h3>Ser reconocidos como referentes de excelencia <em>//</em></h3><p>Ser reconocidos en el mercado de la construcción como una empresa con pasión por los altos estándares, superando las expectativas de nuestros clientes y, con esto, llevar a la población a una mejor calidad de vida.</p></article>
-          <article class="rv"><p class="ed-k">Nuestra misión</p><h3>Proyectos civiles modernos con calidad garantizada <em>//</em></h3><p>Realizar proyectos de construcción civil modernos, siendo el apoyo principal de nuestros clientes, garantizando seguridad y respetando los plazos de ejecución. Nuestra prioridad es dar la confianza que nuestra experiencia en el mercado nos permite, con la calidad de siempre y optimizando los tiempos.</p></article>
-        </div>
+    <section class="ed-mvband">
+      <Image class="ed-mvbg" src={foto('mv-fondo')} widths={[960, 1400, 2000]} sizes="100vw" format="webp" alt="" loading="lazy" />
+      <div class="wrap ed-mvgrid">
+        <article class="rv">
+          <p class="ed-k">Nuestra visión</p>
+          <h2 class="ed-mvt"><span class="ln"><span>Ser reconocidos</span></span><span class="ln"><span>como referentes</span></span><span class="ln"><span>de excelencia <em>//</em></span></span></h2>
+          <p>Ser reconocidos en el mercado de la construcción como una empresa con pasión por los altos estándares, superando las expectativas de nuestros clientes y, con esto, llevar a la población a una mejor calidad de vida.</p>
+        </article>
+        <article class="rv">
+          <p class="ed-k">Nuestra misión</p>
+          <h2 class="ed-mvt"><span class="ln"><span>Proyectos civiles</span></span><span class="ln"><span>modernos con</span></span><span class="ln"><span>calidad garantizada <em>//</em></span></span></h2>
+          <p>Realizar proyectos de construcción civil modernos, siendo el apoyo principal de nuestros clientes, garantizando seguridad y respetando los plazos de ejecución. Nuestra prioridad es dar la confianza que nuestra experiencia en el mercado nos permite, con la calidad de siempre y optimizando los tiempos.</p>
+        </article>
+        <ul class="ed-pilares rv">
+          <li><b>Seguridad</b><span>Garantizada en cada jornada de obra.</span></li>
+          <li><b>Plazos</b><span>Respetados durante toda la ejecución.</span></li>
+          <li><b>Calidad</b><span>La de siempre, optimizando los tiempos.</span></li>
+        </ul>
       </div>
     </section>
 
@@ -92,8 +104,8 @@ const obras = (await Promise.all(DESTACADAS.map((id) => getEntry('obras', id))))
         <div class="ed-steps">
           {ETAPAS.map((s) => (
             <div class="ed-step rv">
-              <figure class="ph"><Image src={foto(s.img)} widths={[360, 560, 800]} sizes="(max-width:480px) 92vw, (max-width:960px) 46vw, 300px" format="webp" alt={s.alt} style={`object-position:${s.pos}`} loading="lazy" /><figcaption>{s.cap}</figcaption></figure>
-              <em>{s.n}</em><h3>{s.t}</h3><p>{s.d}</p><span class="ent">Entregable · {s.e}</span>
+              <figure class="ph"><Image src={foto(s.img)} widths={[400, 640, 900]} sizes="(max-width:480px) 92vw, (max-width:960px) 46vw, 300px" format="webp" alt={s.alt} style={`object-position:${s.pos}`} loading="lazy" /><figcaption>{s.cap}</figcaption></figure>
+              <em>{s.n}</em><h3>{s.t}</h3><p>{s.d}</p><span class="ent"><b>Entregable</b>{s.e}</span>
             </div>
           ))}
         </div>
@@ -147,7 +159,27 @@ const obras = (await Promise.all(DESTACADAS.map((id) => getEntry('obras', id))))
     </div>
   </div>
 
+  <div class="ed-lb" id="edLb" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada">
+    <button class="ed-lb-x" type="button" aria-label="Cerrar">×</button>
+    <button class="ed-lb-nav prev" type="button" aria-label="Foto anterior">‹</button>
+    <figure><img alt=""><figcaption></figcaption></figure>
+    <button class="ed-lb-nav next" type="button" aria-label="Foto siguiente">›</button>
+  </div>
+
   <script is:inline>
+  (function(){
+    // Visor: cualquier foto de la página se abre en grande y se recorre con flechas o teclado.
+    var lb=document.getElementById("edLb"), im=lb.querySelector("img"), cap=lb.querySelector("figcaption"), last=null, i=0;
+    var figs=[].slice.call(document.querySelectorAll(".ed .ph:not(.ed-fc .ph)"));
+    function show(k){i=(k+figs.length)%figs.length;var f=figs[i],src=f.querySelector("img");var ss=(src.getAttribute("srcset")||"").split(",").map(function(x){return x.trim().split(" ")[0]}).filter(Boolean);im.src=ss.length?ss[ss.length-1]:(src.currentSrc||src.src);im.alt=src.alt;cap.textContent=(f.querySelector("figcaption")||{}).textContent||src.alt;}
+    function open(k){last=document.activeElement;show(k);lb.hidden=false;document.body.style.overflow="hidden";lb.querySelector(".ed-lb-x").focus();}
+    function close(){lb.hidden=true;document.body.style.overflow="";if(last)last.focus();}
+    figs.forEach(function(f,k){f.tabIndex=0;f.setAttribute("role","button");f.setAttribute("aria-label","Ampliar foto: "+(f.querySelector("img").alt||""));
+      f.addEventListener("click",function(){open(k)});f.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();open(k);}});});
+    lb.querySelector(".ed-lb-x").onclick=close;lb.querySelector(".prev").onclick=function(){show(i-1)};lb.querySelector(".next").onclick=function(){show(i+1)};
+    lb.addEventListener("click",function(e){if(e.target===lb)close();});
+    document.addEventListener("keydown",function(e){if(lb.hidden)return;if(e.key==="Escape")close();if(e.key==="ArrowLeft")show(i-1);if(e.key==="ArrowRight")show(i+1);});
+  })();
   (function(){
     var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches, io=("IntersectionObserver" in window);
     // Contadores de la portada, igual que en Inicio.
