@@ -24,8 +24,11 @@ export const waUrl = (txt: string) => `https://wa.me/${WA}?text=${encodeURICompo
 export type Cliente = { n: string; logo?: string; url?: string };
 export const CLIENTES: Cliente[] = [
   { n: 'Municipalidad de Lima', logo: '/assets/clientes/logo-municipalidad-de-lima.svg' },
+  { n: 'Arias Inmobiliaria', logo: '/assets/clientes/logo-arias.png' },
   { n: 'PROLIMA', logo: '/assets/clientes/logo-prolima.svg' },
+  { n: 'SIGSA Geomembranas y Geosintéticos', logo: '/assets/clientes/logo-sigsa.png' },
   { n: 'Osinergmin', logo: '/assets/clientes/logo-osinergmin.svg' },
+  { n: 'Top Decor Muebles', logo: '/assets/clientes/logo-topdecor.png' },
   { n: 'Municipalidad de Santiago de Surco', logo: '/assets/clientes/logo-municipalidad-de-santiago-de-surco.svg' },
 ];
 

@@ -99,18 +99,22 @@ section{padding:110px 0}
 .about-list b{display:block;font-stretch:112%}
 .about-list span{font-size:.93rem;color:var(--muted)}
 
-/* Clients */
-.clients{padding:56px 0;background:var(--paper);border-block:1px solid var(--line)}
-.clients .wrap{display:flex;gap:40px;align-items:center;flex-wrap:wrap}
-.clients p{font-weight:600;color:var(--muted);flex:0 0 180px;line-height:1.35}
-.clients ul{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:14px 44px;flex:1}
-.clients li{display:flex;align-items:center;min-height:48px;font-stretch:88%;font-weight:750;font-size:1.3rem;color:#6B7890;letter-spacing:-.01em;line-height:1.2}
-.clients a{display:flex;align-items:center;color:inherit;text-decoration:none;border-radius:4px}
-.clients a:hover,.clients a:focus-visible{color:var(--ink)}
-/* Logos: gris y atenuados; color al pasar el cursor o enfocar */
-.clients img{display:block;height:48px;width:auto;max-width:210px;object-fit:contain;filter:grayscale(1);opacity:.6}
-.clients li:hover img,.clients a:focus-visible img{filter:none;opacity:1}
-@media (prefers-reduced-motion:no-preference){.clients img{transition:filter .25s,opacity .25s}}
+/* Clients: título grande y logos a color en una sola línea que gira hacia la derecha */
+.clients{padding:88px 0 80px;background:#fff;border-block:1px solid var(--line);overflow:hidden}
+.cl-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:48px}
+.cl-head .kicker{margin-bottom:12px}
+.cl-head h2{font-size:clamp(2.2rem,4.6vw,3.6rem);font-stretch:118%;font-weight:850;line-height:1;letter-spacing:-.03em;color:var(--ink);max-width:12ch}
+.cl-head h2 span{color:var(--blue)}
+.cl-head p{max-width:38ch;color:var(--muted);font-size:1.02rem;line-height:1.55}
+.cl-marquee{-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.cl-track{display:flex;width:max-content;animation:cl-giro 34s linear infinite}
+.cl-marquee:hover .cl-track{animation-play-state:paused}
+.cl-track ul{list-style:none;display:flex;flex-wrap:nowrap;flex-shrink:0;align-items:center;gap:80px;padding:0 80px 0 0;margin:0}
+.cl-track li{flex-shrink:0;display:flex;align-items:center;height:72px;font-stretch:88%;font-weight:750;font-size:1.3rem;color:#6B7890;white-space:nowrap}
+.cl-track a{display:flex;align-items:center;color:inherit;text-decoration:none;border-radius:4px}
+.cl-track img{display:block;height:60px;width:auto;max-width:240px;object-fit:contain;transition:transform .3s}
+.cl-track li:hover img{transform:scale(1.06)}
+@keyframes cl-giro{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 /* Featured projects */
 .proj-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:44px}
 .feat{display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:280px 280px;gap:14px}
@@ -623,8 +627,8 @@ footer{overflow:hidden}
   .about-photos{height:360px}
   .contact-info,form{padding:32px 24px}
   .hero-facts{margin-top:48px}
-  .clients p{flex-basis:100%}
-  .clients .wrap{gap:18px}.clients ul{gap:14px 28px}.clients li{font-size:1.1rem}.clients img{height:40px}
+  .clients{padding:64px 0}.cl-head{margin-bottom:32px}
+  .cl-track ul{gap:48px;padding-right:48px}.cl-track img{height:44px}.cl-track{animation-duration:26s}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 /* Móvil: el contenido no puede ensanchar servicios ni la vista rápida */
