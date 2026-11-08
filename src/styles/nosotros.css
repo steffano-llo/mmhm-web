@@ -1,0 +1,96 @@
+/* Nosotros: tramo editorial (Inter Tight) entre la portada y los clientes. El resto usa los estilos del sitio. */
+@font-face{font-family:"Inter Tight";font-style:normal;font-weight:300 700;font-display:swap;src:url("/fonts/inter-tight-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+.nos-facts{margin-top:56px}
+.nos-facts span{display:block;max-width:24ch}
+.page-hero:has(.nos-facts){padding-bottom:64px}
+
+.ed{font-family:"Inter Tight",var(--f);--mute:#8FA0B8;--line2:#DCE1E9}
+.ed h2,.ed h3{font-stretch:100%;letter-spacing:-.01em}
+.ed-sec{padding:110px 0}
+.ed-k{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.ed-h2{font-weight:400;font-size:clamp(2rem,3.6vw,3.1rem);line-height:1.1;margin-top:14px;text-transform:uppercase}
+.ed-p{margin-top:22px;font-size:1.06rem;font-weight:300;color:var(--muted);max-width:50ch}
+.ph{position:relative;overflow:hidden;margin:0;background:var(--paper)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.ph figcaption{position:absolute;left:0;right:0;bottom:0;padding:30px 14px 11px;color:#fff;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;background:linear-gradient(transparent,rgba(8,20,40,.78))}
+
+/* Quiénes somos */
+.ed-about{display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:start}
+.ed-esp{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;margin-top:34px;border-top:1px solid var(--line2)}
+.ed-esp li{border-bottom:1px solid var(--line2)}
+.ed-esp li:nth-child(odd){border-right:1px solid var(--line2);padding-right:20px}
+.ed-esp li:nth-child(even){padding-left:20px}
+.ed-esp a{display:block;padding:16px 0;text-decoration:none;color:inherit}
+.ed-esp b{display:block;font-weight:500}
+.ed-esp b::after{content:" →";color:var(--blue);opacity:0;transition:opacity .2s}
+.ed-esp a:hover b::after{opacity:1}
+.ed-esp span{display:block;font-size:.84rem;color:var(--muted);font-weight:300;margin-top:2px;line-height:1.45}
+.ed-collage{display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:290px 290px;gap:14px}
+.ed-collage .ph:first-child{grid-row:1/3}
+
+/* Visión y misión */
+.ed-mvsec{padding-top:0}
+.ed-mv{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line2)}
+.ed-mv article{padding:56px 56px 0 0}
+.ed-mv article+article{padding:56px 0 0 56px;border-left:1px solid var(--line2)}
+.ed-mv h3{font-weight:400;font-size:clamp(1.6rem,2.6vw,2.3rem);line-height:1.1;margin-top:14px;max-width:16ch;text-transform:uppercase}
+.ed-mv h3 em{font-style:normal;color:var(--blue)}
+.ed-mv p:not(.ed-k){margin-top:20px;font-weight:300;color:var(--muted);max-width:52ch}
+
+/* Filosofía */
+.ed-phil{background:var(--paper)}
+.ed-head{display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:end;border-bottom:1px solid var(--line2);padding-bottom:34px}
+.ed-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:44px}
+.ed-step .ph{height:200px}
+.ed-step em{display:block;font-style:normal;font-size:.8rem;color:var(--mute);margin-top:18px;letter-spacing:.1em}
+.ed-step h3{font-weight:500;font-size:1.15rem;margin-top:4px}
+.ed-step p{font-size:.9rem;color:var(--muted);margin-top:6px;font-weight:300}
+.ed-step .ent{display:block;margin-top:12px;padding-top:10px;border-top:1px solid var(--line2);font-size:.8rem;color:var(--ink)}
+
+/* Compromisos */
+.ed-vals{display:grid;grid-template-columns:1fr 1fr;gap:56px 40px}
+.ed-val{display:grid;grid-template-columns:72px 1fr;gap:0 20px;align-content:start}
+.ed-val .ph{grid-column:1/3;height:230px;margin-bottom:26px}
+.ed-val .n{font-weight:300;font-size:2.6rem;color:#B5C0CF;line-height:1}
+.ed-val h3{font-weight:400;font-size:clamp(1.5rem,2.2vw,2rem);line-height:1.05;text-transform:uppercase}
+.ed-val p{margin-top:12px;font-weight:300;color:var(--muted);max-width:44ch}
+.ed-val .proof{display:inline-block;margin-top:16px;font-size:.85rem;border-left:2px solid var(--blue);padding-left:12px;color:var(--ink)}
+.ed-val .proof a{color:inherit}.ed-val .proof a:hover{color:var(--blue)}
+
+/* Obras destacadas */
+.ed-dark{background:var(--navy);color:#fff}
+.ed-feat{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:28px;padding-top:28px;border-top:1px solid var(--navy-3)}
+.ed-fc{text-decoration:none;color:#fff}
+.ed-fc .ph{height:300px;background:var(--navy-2)}
+.ed-fc:hover .ph img{transform:scale(1.04)}
+.ed-fc span{display:block;margin-top:16px;font-size:.82rem;color:var(--mute)}
+.ed-fc h3{font-weight:400;font-size:1.35rem;margin-top:4px}
+.ed-fc:hover h3{color:var(--blue-2)}
+
+.ed-band-btns{display:flex;gap:12px;flex-wrap:wrap}
+.band .ed-band-btns .btn-wa{background:var(--wa);color:#fff}
+.band .ed-band-btns .btn-wa:hover{background:#116A37}
+
+/* Entradas suaves (solo con JS) */
+.ed-js .ed .rv{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
+.ed-js .ed .rv.in{opacity:1;transform:none}
+
+@media (max-width:960px){
+  .ed-about,.ed-head{grid-template-columns:1fr}
+  .ed-mv{grid-template-columns:1fr}
+  .ed-mv article,.ed-mv article+article{padding:40px 0 0;border-left:0}
+  .ed-mv article+article{margin-top:40px;border-top:1px solid var(--line2)}
+  .ed-steps{grid-template-columns:1fr 1fr}
+  .ed-vals{grid-template-columns:1fr;gap:44px}
+  .ed-feat{grid-template-columns:1fr}.ed-fc .ph{height:240px}
+  .ed-collage{grid-template-rows:200px 200px}
+}
+@media (max-width:480px){
+  .ed-sec{padding:72px 0}
+  .ed-esp{grid-template-columns:1fr}
+  .ed-esp li:nth-child(odd){border-right:0;padding-right:0}.ed-esp li:nth-child(even){padding-left:0}
+  .ed-collage{grid-template-columns:1fr 1fr;grid-template-rows:180px 120px}
+  .ed-steps{grid-template-columns:1fr}.ed-step .ph{height:180px}
+  .ed-val{grid-template-columns:52px 1fr}.ed-val .n{font-size:2rem}.ed-val .ph{height:200px}
+}

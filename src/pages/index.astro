@@ -70,12 +70,17 @@ const organizacion = {
         <h2>MM High Metrik Engineers S.A.C.</h2>
         <div class="cota"><i></i><span>Ingeniería, gestión y obra</span><i></i></div>
         <p class="lead" style="margin-top:22px">Somos una empresa de servicios integrales de construcción, remodelación y mantenimiento. Contamos con los recursos y la experiencia para cumplir sus requerimientos de manera oportuna y eficaz.</p>
-        <a class="btn btn-line" href="/nosotros/" style="margin-top:26px">Conocer más</a>
+        <ul class="about-pts">
+          <li><b>Obra pública</b><span>Plazas, riberas y edificios para municipalidades y entidades del Estado.</span></li>
+          <li><b>Equipo propio</b><span>Personal y maquinaria nuestros en cada frente de obra.</span></li>
+          <li><b>Gestión integral</b><span>Del expediente a la entrega, con trámites incluidos.</span></li>
+        </ul>
+        <a class="btn btn-line" href="/nosotros/" style="margin-top:30px">Conocer más</a>
       </div>
-      <div class="about-photos">
-        <Image src={imagenSitio('proyectos/rio-lurin.jpg')} widths={[480, 800, 1200]} sizes="(max-width:1000px) 56vw, 300px" format="webp" alt="Flota de excavadoras en la obra de descolmatación del Río Lurín" style="object-position:62% center" loading="lazy" />
-        <figure class="duo"><Image src={imagenSitio('oficina.jpg')} format="webp" alt="Recepción de la oficina de MM High Metrik en San Isidro" loading="lazy" /></figure>
-        <figure class="duo"><Image src={imagenSitio('proyectos/rio-rimac-ramiro-priale.jpg')} widths={[320, 480, 800]} sizes="(max-width:1000px) 44vw, 240px" format="webp" alt="Excavadoras trabajando de noche en el cauce del Río Rímac" loading="lazy" /></figure>
+      <div class="about-photos about-cap">
+        <figure><Image src={imagenSitio('nosotros/plaza-bolognesi-aerea.jpg')} widths={[480, 800, 1200]} sizes="(max-width:1000px) 56vw, 330px" format="webp" alt="Vista aérea de la Plaza Bolognesi renovada" loading="lazy" /><figcaption><b>Plaza Bolognesi</b>Obra terminada · Cercado de Lima</figcaption></figure>
+        <figure><Image src={imagenSitio('nosotros/equipo-obra.jpg')} widths={[320, 480, 800]} sizes="(max-width:1000px) 44vw, 260px" format="webp" alt="Ingenieros de MM High Metrik supervisando en obra" style="object-position:62% 30%" loading="lazy" /><figcaption><b>Nuestro equipo</b>Supervisión en obra</figcaption></figure>
+        <figure><Image src={imagenSitio('nosotros/equipo-propio.jpg')} widths={[320, 480, 800]} sizes="(max-width:1000px) 44vw, 260px" format="webp" alt="Excavadoras y cargador frontal de MM High Metrik en obra" loading="lazy" /><figcaption><b>Maquinaria propia</b>Excavadoras y cargador frontal</figcaption></figure>
       </div>
     </div>
   </section>
